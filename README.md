@@ -1,0 +1,2 @@
+# Ainewssplitplus
+Ai news
