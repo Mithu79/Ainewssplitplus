@@ -1,5 +1,5 @@
-# Ainewssplitplus
-Ai news
+# AiYoutubautomation
+Aiautomqtion
 I'll build a comprehensive **YouTube Automation Bot** dashboard — with AI video prompt generation (scene-by-scene for Sora, Flow, Runway etc.), thumbnail prompts, and upload scheduling. Powered by Claude AI inside.
 
 Here is your **Moltbot YouTube Automation Bot** — a fully AI-powered dashboard built for Indian and Asian content creators.
