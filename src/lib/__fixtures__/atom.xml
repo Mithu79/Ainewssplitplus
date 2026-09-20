@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <title>The Test Verge</title>
+  <subtitle>Fixture Atom feed</subtitle>
+  <link rel="self" href="https://verge.example.com/rss/index.xml"/>
+  <link rel="alternate" href="https://verge.example.com/"/>
+  <updated>2026-09-20T14:37:45+00:00</updated>
+  <id>https://verge.example.com/rss</id>
+  <entry>
+    <title>Chip maker unveils a 2nm phone processor</title>
+    <link rel="alternate" href="https://verge.example.com/2026/9/20/1234/chip-2nm"/>
+    <id>https://verge.example.com/?p=1234</id>
+    <published>2026-09-20T08:45:48-04:00</published>
+    <updated>2026-09-20T09:10:00-04:00</updated>
+    <author><name>Terrence Test</name></author>
+    <media:content url="https://cdn.verge.example.com/chip.jpg" medium="image"/>
+    <category term="tech" label="Tech"/>
+    <category term="hardware" label="Hardware"/>
+    <content type="html">&lt;p&gt;The new silicon promises &lt;b&gt;30%&lt;/b&gt; better efficiency and ships next spring.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>This robot learns by watching humans</title>
+    <link rel="alternate" href="/2026/9/19/1200/robot-learning"/>
+    <id>https://verge.example.com/?p=1200</id>
+    <published>2026-09-19T16:28:15-04:00</published>
+    <updated>2026-09-19T16:28:15-04:00</updated>
+    <author><name>Justine Test</name></author>
+    <media:content url="https://cdn.verge.example.com/robot.mp4" medium="video" type="video/mp4"/>
+    <summary type="html">A new training regime cuts the data needed by half.</summary>
+  </entry>
+  <entry>
+    <title>Streaming bundles are quietly becoming cable again</title>
+    <link rel="alternate" href="https://verge.example.com/column/1100/bundles"/>
+    <link rel="enclosure" type="image/jpeg" href="https://cdn.verge.example.com/bundles.jpg"/>
+    <id>https://verge.example.com/?p=1100</id>
+    <published>2026-09-18T16:47:40-04:00</published>
+    <updated>2026-09-18T16:47:40-04:00</updated>
+    <author><name>Charles Test</name></author>
+    <summary>Every service now wants to be the one app you open first.</summary>
+  </entry>
+</feed>

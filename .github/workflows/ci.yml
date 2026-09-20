@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "arena/**"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck · test · build
+    runs-on: ubuntu-latest
+    env:
+      # Tests and the build must never depend on outbound network access.
+      NEWS_SPLIT_OFFLINE: always
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests (parser, normaliser, clustering, ranking, store)
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Smoke test the API
+        run: |
+          PORT=3111 npm run start &
+          up=0
+          for i in $(seq 1 60); do
+            if curl -fsS --max-time 2 "http://127.0.0.1:3111/api/status" > /dev/null 2>&1; then up=1; break; fi
+            sleep 1
+          done
+          if [ "$up" != "1" ]; then echo "::error::server never answered on :3111"; exit 1; fi
+          curl -fsS --max-time 10 "http://127.0.0.1:3111/api/status" | head -c 400; echo
+          curl -fsS --max-time 10 "http://127.0.0.1:3111/api/news?category=world&limit=3" | head -c 400; echo
+          curl -fsS --max-time 10 "http://127.0.0.1:3111/api/feed?category=tech&limit=3" | head -c 300; echo
+          curl -fsS --max-time 30 -o /dev/null -w 'front page: HTTP %{http_code}\n' "http://127.0.0.1:3111/"
+          kill %1

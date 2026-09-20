@@ -1,0 +1,49 @@
+name: Scheduled feed refresh
+
+# Keeps a deployed NewsSplit fresh even on platforms without long-lived
+# background timers (serverless, static hosts with functions, etc.).
+# Set the `NEWS_SPLIT_URL` repository variable to point at your deployment and
+# (optionally) the `REFRESH_TOKEN` secret if you protected the endpoint.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Deployment URL to refresh (defaults to the NEWS_SPLIT_URL variable)"
+        required: false
+        type: string
+
+jobs:
+  refresh:
+    name: Ping /api/refresh
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Resolve deployment URL
+        id: target
+        env:
+          INPUT_URL: ${{ inputs.url }}
+          VAR_URL: ${{ vars.NEWS_SPLIT_URL }}
+        run: |
+          URL="${INPUT_URL:-$VAR_URL}"
+          if [ -z "$URL" ]; then
+            echo "::notice::No NEWS_SPLIT_URL configured — add it as a repository variable to enable scheduled refreshes."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "url=$URL" >> "$GITHUB_OUTPUT"
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Trigger crawl
+        if: steps.target.outputs.skip != 'true'
+        env:
+          URL: ${{ steps.target.outputs.url }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+        run: |
+          ARGS=(-sS -X POST --max-time 150 -w '\nHTTP %{http_code} in %{time_total}s\n')
+          if [ -n "$REFRESH_TOKEN" ]; then
+            ARGS+=(-H "Authorization: Bearer $REFRESH_TOKEN")
+          fi
+          curl "${ARGS[@]}" "$URL/api/refresh"
