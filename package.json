@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 3000 --turbopack",
     "build": "next build",
-    "start": "next start -H 0.0.0.0 -p 3000",
+    "start": "next start -H 0.0.0.0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -42,12 +42,14 @@ jobs:
       - name: Smoke test the API
         run: |
           PORT=3111 npm run start &
-          for i in $(seq 1 40); do
-            if curl -fsS "http://127.0.0.1:3111/api/status" > /dev/null 2>&1; then break; fi
+          up=0
+          for i in $(seq 1 60); do
+            if curl -fsS --max-time 2 "http://127.0.0.1:3111/api/status" > /dev/null 2>&1; then up=1; break; fi
             sleep 1
           done
-          curl -fsS "http://127.0.0.1:3111/api/status" | head -c 400; echo
-          curl -fsS "http://127.0.0.1:3111/api/news?category=world&limit=3" | head -c 400; echo
-          curl -fsS "http://127.0.0.1:3111/api/feed?category=tech&limit=3" | head -c 300; echo
-          curl -fsS -o /dev/null -w 'front page: HTTP %{http_code}\n' "http://127.0.0.1:3111/"
+          if [ "$up" != "1" ]; then echo "::error::server never answered on :3111"; exit 1; fi
+          curl -fsS --max-time 10 "http://127.0.0.1:3111/api/status" | head -c 400; echo
+          curl -fsS --max-time 10 "http://127.0.0.1:3111/api/news?category=world&limit=3" | head -c 400; echo
+          curl -fsS --max-time 10 "http://127.0.0.1:3111/api/feed?category=tech&limit=3" | head -c 300; echo
+          curl -fsS --max-time 30 -o /dev/null -w 'front page: HTTP %{http_code}\n' "http://127.0.0.1:3111/"
           kill %1
