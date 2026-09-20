@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title><![CDATA[Test Wire — World]]></title>
+    <link>https://wire.example.com/world</link>
+    <description>Fixture feed used by the NewsSplit test suite</description>
+    <lastBuildDate>Sun, 20 Sep 2026 10:00:00 GMT</lastBuildDate>
+    <item>
+      <title><![CDATA[Breaking: Summit ends with surprise deal]]></title>
+      <link>https://wire.example.com/articles/abc123?utm_source=rss&amp;utm_medium=feed</link>
+      <guid isPermaLink="false">tag:wire.example.com,2026:abc123</guid>
+      <pubDate>Sun, 20 Sep 2026 09:30:00 GMT</pubDate>
+      <dc:creator><![CDATA[Jane Reporter]]></dc:creator>
+      <description><![CDATA[<p>Negotiators agreed a final text after <b>three days</b> of talks in Geneva.</p>]]></description>
+      <content:encoded><![CDATA[<p>Negotiators agreed a final text after three days of talks in Geneva. The deal covers trade, security and climate finance, according to two people familiar with the discussions.</p>]]></content:encoded>
+      <media:content medium="image" width="1200" height="675" url="https://cdn.wire.example.com/summit-1200.jpg"/>
+      <media:thumbnail width="66" height="66" url="https://cdn.wire.example.com/summit-thumb.jpg"/>
+      <category><![CDATA[Europe]]></category>
+      <category>Diplomacy</category>
+    </item>
+    <item>
+      <title>Summit ends with surprise deal</title>
+      <link>https://other.example.com/news/summit-deal-2026</link>
+      <guid>https://other.example.com/news/summit-deal-2026</guid>
+      <pubDate>Sun, 20 Sep 2026 09:41:00 GMT</pubDate>
+      <description>Negotiators agreed a final text after three days of talks.</description>
+      <source url="https://other.example.com">Other Wire</source>
+    </item>
+    <item>
+      <title><![CDATA[Watch: All the goals from the weekend]]></title>
+      <link>https://wire.example.com/videos/weekend-goals</link>
+      <pubDate>Sat, 19 Sep 2026 19:00:09 GMT</pubDate>
+      <media:content medium="video" type="video/mp4" url="https://cdn.wire.example.com/goals.mp4"/>
+      <media:thumbnail url="https://cdn.wire.example.com/goals-poster.jpg"/>
+      <description><![CDATA[Every goal from Saturday's matches.]]></description>
+    </item>
+    <item>
+      <title>The daily quiz: Monday 14 September</title>
+      <link>https://wire.example.com/quizzes/daily-quiz-14-september</link>
+      <pubDate>Mon, 14 Sep 2026 05:56:07 GMT</pubDate>
+      <description>Test your knowledge with today's quiz.</description>
+    </item>
+    <item>
+      <title><![CDATA[Orphan story without a link]]></title>
+      <pubDate>Sun, 20 Sep 2026 08:00:00 GMT</pubDate>
+      <description>This item must be dropped because there is nothing to link to.</description>
+    </item>
+    <item>
+      <title><![CDATA[Markets open higher on rate hopes]]></title>
+      <link>https://wire.example.com/business/markets-open</link>
+      <pubDate>2026-09-20 08:45:48</pubDate>
+      <description>Traders bet on a pause.</description>
+    </item>
+    <item>
+      <title>Coalition &amp; opposition agree budget timetable</title>
+      <link>https://wire.example.com/politics/budget-timetable</link>
+      <pubDate>Sat, 19 Sep 2026 21:01:56 GMT</pubDate>
+      <description><![CDATA[A deal on the budget calendar.]]></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,36 @@
+{
+  "name": "newssplit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NewsSplit — an automated news aggregator that fetches, normalises, de-duplicates and ranks stories from RSS feeds across World, Tech, Business, Sports, Science, Health, Entertainment and Local news.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0 -p 3000 --turbopack",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0 -p 3000",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "verify": "npm run typecheck && npm run test && npm run build",
+    "refresh": "node scripts/refresh.mjs"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.5.3",
+    "next": "^15.5.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

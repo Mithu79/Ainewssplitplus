@@ -1,0 +1,798 @@
+{
+  "capturedAt": "2026-09-20T15:35:00.000Z",
+  "note": "Real headlines captured from the public feeds registered in src/lib/sources.ts. Used only when live fetching is unavailable (NEWS_SPLIT_OFFLINE=auto and every feed failed, or NEWS_SPLIT_OFFLINE=always). Links point at the original publishers.",
+  "items": [
+    {
+      "title": "Largest attack on Moscow sees Ukraine fire hundreds of drones, mayor says",
+      "link": "https://www.bbc.co.uk/news/articles/c34gdjk1ne8yo",
+      "publishedAt": "2026-09-20T10:45:39Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "German elections under way which could decide fate of Chancellor Merz",
+      "link": "https://www.bbc.co.uk/news/articles/cme8xj6g2ny7o",
+      "publishedAt": "2026-09-20T07:57:32Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Trump says his planned triumphal arch will double as a military complex to store ammunition",
+      "link": "https://www.bbc.co.uk/news/articles/cqdj4pez00dzo",
+      "publishedAt": "2026-09-20T13:50:51Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Houthis say they targeted Saudi capital with ballistic missiles",
+      "link": "https://www.bbc.co.uk/news/articles/cwly5d9v7r43o",
+      "publishedAt": "2026-09-19T23:49:26Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Nato welcomes Greenland deal as Trump says it will give US 'permanent security control'",
+      "link": "https://www.bbc.co.uk/news/articles/c63d7lexyym1o",
+      "publishedAt": "2026-09-19T23:00:27Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Millions without power as Cuba hit by latest major blackout",
+      "link": "https://www.bbc.co.uk/news/articles/c6j9x4387lzxo",
+      "publishedAt": "2026-09-19T10:27:37Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Trump signs sweeping Russia sanctions bill",
+      "link": "https://www.bbc.co.uk/news/articles/cqvgy34ndj4eo",
+      "publishedAt": "2026-09-18T22:05:47Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Journalists denied White House access after Trump banned some media outlets",
+      "link": "https://www.bbc.co.uk/news/articles/cj4gklz9dxplo",
+      "publishedAt": "2026-09-19T19:13:49Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Grim discoveries of murdered women spark fear in South Africa",
+      "link": "https://www.bbc.co.uk/news/articles/cjkg71e67k17o",
+      "publishedAt": "2026-09-18T23:04:41Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Shark attack prompts rare kill order in Western Australia as victim named",
+      "link": "https://www.bbc.co.uk/news/articles/cqwyzdnk442lo",
+      "publishedAt": "2026-09-19T11:50:22Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Mum's viral barefoot race sparks debate over India's education crisis",
+      "link": "https://www.bbc.co.uk/news/articles/cw62m6z7m7zjo",
+      "publishedAt": "2026-09-19T23:18:06Z",
+      "sourceId": "bbc-world",
+      "categories": ["world"]
+    },
+    {
+      "title": "Tata Sons: India's corporate crown braces for upheaval amid boardroom revolt",
+      "link": "https://www.bbc.co.uk/news/articles/c670lkvdzkn2o",
+      "publishedAt": "2026-09-18T23:07:16Z",
+      "sourceId": "bbc-business",
+      "categories": ["business", "world"]
+    },
+    {
+      "title": "Google's Gemini AI hacked three companies in security test",
+      "link": "https://www.bbc.co.uk/news/articles/c607l0k72rlvo",
+      "publishedAt": "2026-09-19T13:39:32Z",
+      "sourceId": "bbc-world",
+      "categories": ["tech", "world", "business"]
+    },
+    {
+      "title": "Trump says US will form 'AI Force' and appoint an artificial intelligence tsar",
+      "link": "https://www.bbc.co.uk/news/articles/cqlykr2vrv04o",
+      "publishedAt": "2026-09-19T21:01:56Z",
+      "sourceId": "bbc-science",
+      "categories": ["tech", "science", "world"]
+    },
+    {
+      "title": "Not all AI workers think the tech could kill everyone",
+      "link": "https://www.bbc.co.uk/news/articles/cm5y7qj54klpo",
+      "publishedAt": "2026-09-19T23:01:57Z",
+      "sourceId": "bbc-world",
+      "categories": ["tech", "world", "business"]
+    },
+    {
+      "title": "Uncontrolled AI could lead to 'silicon species' rivalling humans, warns Microsoft",
+      "link": "https://www.bbc.co.uk/news/articles/c6n07ypqz8kzo",
+      "publishedAt": "2026-09-17T08:22:12Z",
+      "sourceId": "bbc-business",
+      "categories": ["tech", "business"]
+    },
+    {
+      "title": "OpenAI reveals six more safety issues and unveils plan to disclose incidents",
+      "link": "https://www.bbc.co.uk/news/articles/cmpq0wj5g899o",
+      "publishedAt": "2026-09-17T03:09:21Z",
+      "sourceId": "bbc-business",
+      "categories": ["tech", "business"]
+    },
+    {
+      "title": "Snapchat open to putting time limits on teens, boss tells BBC",
+      "link": "https://www.bbc.co.uk/news/articles/cr3wjz3edd10o",
+      "publishedAt": "2026-09-16T23:41:57Z",
+      "sourceId": "bbc-business",
+      "categories": ["tech", "business"]
+    },
+    {
+      "title": "A24's reputation is on the line with the SCP Foundation movie",
+      "link": "https://www.theverge.com/entertainment/997853/a24-scp-movie-creative-commons-license",
+      "publishedAt": "2026-09-20T08:45:48-04:00",
+      "sourceId": "verge",
+      "categories": ["tech", "entertainment"],
+      "author": "Terrence O'Brien",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/A24-SCP-2.jpg",
+      "summary": "After the success of Backrooms, it looks like A24 is trying to cash in on yet another internet horror craze with a new installment in the V/H/S horror anthology series set in the SCP Foundation universe. But as soon as it was announced, the backlash started, and V/H/S: SCP already appears to be on shaky ground."
+    },
+    {
+      "title": "Humans, not rogue AI, are still the biggest cybersecurity risk to energy systems",
+      "link": "https://www.theverge.com/science/997834/ai-cyberattack-energy-critical-infrastructure",
+      "publishedAt": "2026-09-19T16:28:15-04:00",
+      "sourceId": "verge",
+      "categories": ["tech", "science"],
+      "author": "Justine Calma",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/akrales_220309_4977_0292.jpg",
+      "summary": "Before recent high-profile hacks raised the specter of AI possibly \"killing all humans,\" our energy systems were already disturbingly vulnerable to cyberattack — and the risk is growing."
+    },
+    {
+      "title": "The hidden monopoly behind your TI graphing calculator",
+      "link": "https://www.theverge.com/podcast/997725/the-hidden-monopoly-behind-your-ti-graphing-calculator",
+      "publishedAt": "2026-09-20T08:22:18-04:00",
+      "sourceId": "verge",
+      "categories": ["tech"],
+      "author": "Verge Staff",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/VRH_TI84_Site.jpg",
+      "summary": "The same calculator has been on most kids' back-to-school shopping list since the early 2000s, and the dominance of Texas Instruments' calculator division goes back even farther."
+    },
+    {
+      "title": "All roads lead to cable",
+      "link": "https://www.theverge.com/column/997843/streamers-cable-fast-channels",
+      "publishedAt": "2026-09-19T16:47:40-04:00",
+      "sourceId": "verge",
+      "categories": ["tech", "entertainment"],
+      "author": "Charles Pulliam-Moore",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/gettyimages-2193473385.jpg",
+      "summary": "A weekly breakdown of one essential story from the tech world: streaming platforms, FAST channels, and the future of entertainment."
+    },
+    {
+      "title": "Meta's Muse is creepy, but maybe not for the reasons you think",
+      "link": "https://www.theverge.com/?p=997833",
+      "publishedAt": "2026-09-19T16:44:40-04:00",
+      "sourceId": "verge",
+      "categories": ["tech"],
+      "author": "Terrence O'Brien",
+      "summary": "Meta's Muse is apparently an effective AI assistant, but one that's a little creepy."
+    },
+    {
+      "title": "Warren Buffett steps down after six decades at Berkshire - 'Father Time always wins'",
+      "link": "https://www.bbc.co.uk/news/articles/cvj64dl1w6yno",
+      "publishedAt": "2026-09-18T17:15:02Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "Chiltern Railways renationalised after 30 years",
+      "link": "https://www.bbc.co.uk/news/articles/c68xk701d975o",
+      "publishedAt": "2026-09-20T10:45:39Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "Japan raises interest rate to new 31-year high to curb rising prices",
+      "link": "https://www.bbc.co.uk/news/articles/cqn74jeek06no",
+      "publishedAt": "2026-09-18T07:14:57Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "US interest rates raised for first time in three years",
+      "link": "https://www.bbc.co.uk/news/articles/cw4gmlyvj422o",
+      "publishedAt": "2026-09-17T00:40:17Z",
+      "sourceId": "bbc-business",
+      "categories": ["business", "world"]
+    },
+    {
+      "title": "Ed Davey calls for immediate 10p cut to fuel duty",
+      "link": "https://www.bbc.co.uk/news/articles/cr89j514dly2o",
+      "publishedAt": "2026-09-20T14:42:42Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "'We simply don't know' - JP Morgan struggling to forecast oil prices due to Trump's war with Iran",
+      "link": "https://www.bbc.co.uk/news/articles/cq0m3gmv8n7ko",
+      "publishedAt": "2026-09-18T17:57:30Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "Ryanair boss Michael O'Leary apologises over 'high-fare rapists' remarks",
+      "link": "https://www.bbc.co.uk/news/articles/cm1j4kj57k08o",
+      "publishedAt": "2026-09-18T17:10:58Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "Thames Water rescue deal should be rejected - MPs",
+      "link": "https://www.bbc.co.uk/news/articles/c6qjk9q1wpqeo",
+      "publishedAt": "2026-09-18T05:16:57Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "British Steel plan lacks credibility, MPs say",
+      "link": "https://www.bbc.co.uk/news/articles/cklyjzv4nl7wo",
+      "publishedAt": "2026-09-18T12:47:15Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "Billionaire Man United owner loses moral high ground after tax exile, Labour chair says",
+      "link": "https://www.bbc.co.uk/news/articles/cm0rexrwjj1vo",
+      "publishedAt": "2026-09-20T11:22:21Z",
+      "sourceId": "bbc-business",
+      "categories": ["business", "sports"]
+    },
+    {
+      "title": "Flight chaos caused by 'millisecond' software defect, report says",
+      "link": "https://www.bbc.co.uk/news/articles/cw0kl1571lpmo",
+      "publishedAt": "2026-09-18T15:48:58Z",
+      "sourceId": "bbc-business",
+      "categories": ["business", "tech"]
+    },
+    {
+      "title": "Barclays workers ask for more money to return to the office",
+      "link": "https://www.bbc.co.uk/news/articles/cqlym1n9kpyvo",
+      "publishedAt": "2026-09-17T14:20:27Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "Lib Dems vow to end 'computer says no' economy to boost growth",
+      "link": "https://www.bbc.co.uk/news/articles/cqrk31k7pprlo",
+      "publishedAt": "2026-09-20T14:05:15Z",
+      "sourceId": "bbc-business",
+      "categories": ["business"]
+    },
+    {
+      "title": "Townsend run over by pitch roller in Thailand",
+      "link": "https://www.bbc.co.uk/sport/football/articles/cr93e70xv21ko",
+      "publishedAt": "2026-09-20T09:08:43Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "GB reach Davis Cup Finals as Patten and Skupski win",
+      "link": "https://www.bbc.co.uk/sport/tennis/articles/c60re2wqr9j2o",
+      "publishedAt": "2026-09-20T13:22:36Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "GB qualify for Davis Cup Finals after doubles win",
+      "link": "https://www.bbc.co.uk/sport/tennis/videos/cwx2z105mx48o",
+      "publishedAt": "2026-09-20T13:16:05Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"],
+      "isVideo": true
+    },
+    {
+      "title": "Yu, 13, wins record-breaking first major gold medal",
+      "link": "https://www.bbc.co.uk/sport/swimming/articles/cqx2z1ky4d6lo",
+      "publishedAt": "2026-09-20T14:21:11Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "Ngetich breaks women-only half-marathon record",
+      "link": "https://www.bbc.co.uk/sport/athletics/articles/cq2e0ve219dxo",
+      "publishedAt": "2026-09-20T10:55:57Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "Van beats Pantoja to retain UFC flyweight title",
+      "link": "https://www.bbc.co.uk/sport/mixed-martial-arts/articles/cw770mpl53ezo",
+      "publishedAt": "2026-09-20T13:49:05Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "England crush Sri Lanka to top T20 world rankings",
+      "link": "https://www.bbc.co.uk/sport/cricket/articles/cr93e7w5x28do",
+      "publishedAt": "2026-09-19T16:28:22Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "Brighton cruise past Arsenal to end champions' perfect start",
+      "link": "https://www.bbc.co.uk/sport/football/videos/cvde048j71rdo",
+      "publishedAt": "2026-09-19T19:00:09Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"],
+      "isVideo": true
+    },
+    {
+      "title": "Littler could boycott Dutch events over booing",
+      "link": "https://www.bbc.co.uk/sport/darts/articles/cr5ye91l200go",
+      "publishedAt": "2026-09-20T09:03:56Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "Wembley welcomes 'rabid' college football fans",
+      "link": "https://www.bbc.co.uk/sport/american-football/articles/c64g7x1r813go",
+      "publishedAt": "2026-09-20T06:38:49Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "England's 39-match winning streak halted by thrilling draw with Canada",
+      "link": "https://www.bbc.co.uk/sport/rugby-union/videos/ckj06v16j972o",
+      "publishedAt": "2026-09-19T17:14:35Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"],
+      "isVideo": true
+    },
+    {
+      "title": "Hewett & Reid star as GB win fifth World Team Cup",
+      "link": "https://www.bbc.co.uk/sport/tennis/articles/cqpvepy2mvg7o",
+      "publishedAt": "2026-09-20T11:22:22Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "Will the three-week break put more pressure on managers?",
+      "link": "https://www.bbc.co.uk/sport/football/articles/cmg49gv74qzlo",
+      "publishedAt": "2026-09-20T07:25:56Z",
+      "sourceId": "bbc-sport",
+      "categories": ["sports"]
+    },
+    {
+      "title": "New wild cat species discovered - with only one known living member",
+      "link": "https://www.bbc.co.uk/news/articles/c6x2zgv9rr4ro",
+      "publishedAt": "2026-09-17T23:15:55Z",
+      "sourceId": "bbc-science",
+      "categories": ["science"]
+    },
+    {
+      "title": "Part-human part-mouse brain developed in science breakthrough",
+      "link": "https://www.bbc.co.uk/news/articles/c60m3k28j81mo",
+      "publishedAt": "2026-09-16T15:53:27Z",
+      "sourceId": "bbc-science",
+      "categories": ["science", "health"]
+    },
+    {
+      "title": "Nebula image wins Royal Observatory competition",
+      "link": "https://www.bbc.co.uk/news/articles/ckm2qyppr4l2o",
+      "publishedAt": "2026-09-18T05:12:36Z",
+      "sourceId": "bbc-science",
+      "categories": ["science"]
+    },
+    {
+      "title": "Nepal to use new flood study to claim millions from UN climate disaster fund",
+      "link": "https://www.bbc.co.uk/news/articles/cmlyrzve5pwzo",
+      "publishedAt": "2026-09-17T10:31:35Z",
+      "sourceId": "bbc-science",
+      "categories": ["science", "world"]
+    },
+    {
+      "title": "Colombia and Brazil deadliest countries for environmental activists, report says",
+      "link": "https://www.bbc.co.uk/news/articles/c6kgxjl35822o",
+      "publishedAt": "2026-09-16T11:02:54Z",
+      "sourceId": "bbc-science",
+      "categories": ["science", "world"]
+    },
+    {
+      "title": "Third Heathrow runway should only go ahead if airlines pay for cleaner flying, say advisers",
+      "link": "https://www.bbc.co.uk/news/articles/c607lxnvn7r4o",
+      "publishedAt": "2026-09-16T00:05:51Z",
+      "sourceId": "bbc-science",
+      "categories": ["science", "business"]
+    },
+    {
+      "title": "What weapon could the US have put into space?",
+      "link": "https://www.bbc.co.uk/news/articles/cmy4zqgk97wlo",
+      "publishedAt": "2026-09-15T14:23:14Z",
+      "sourceId": "bbc-science",
+      "categories": ["science", "world"]
+    },
+    {
+      "title": "The Himalayas are melting faster - and India's economy is 'at risk'",
+      "link": "https://www.bbc.co.uk/news/articles/crm9ezvwjpno",
+      "publishedAt": "2026-09-13T22:07:22Z",
+      "sourceId": "bbc-science",
+      "categories": ["science", "world"]
+    },
+    {
+      "title": "Summer wildfires caused catastrophic hidden damage, scientists warn",
+      "link": "https://www.bbc.co.uk/news/articles/cn07rzrq244o",
+      "publishedAt": "2026-09-13T06:12:26Z",
+      "sourceId": "bbc-science",
+      "categories": ["science"]
+    },
+    {
+      "title": "When a beloved tree began withering away, locals suspected a killer in their midst",
+      "link": "https://www.bbc.co.uk/news/articles/cw5yl228lvzlo",
+      "publishedAt": "2026-09-18T22:03:40Z",
+      "sourceId": "bbc-science",
+      "categories": ["science"]
+    },
+    {
+      "title": "Hummingbird hawk moths and ivy bees: The insects thriving as temperatures rise",
+      "link": "https://www.bbc.co.uk/news/articles/cvzez0lpnn3go",
+      "publishedAt": "2026-09-19T06:27:28Z",
+      "sourceId": "bbc-science",
+      "categories": ["science"]
+    },
+    {
+      "title": "Jehovah's Witnesses allow blood-derived products but keep ban on whole-blood transfusions",
+      "link": "https://www.statnews.com/2026-09-19/jehovahs-witnesses-blood-derived-products-transfusions/",
+      "publishedAt": "2026-09-19T14:13:11Z",
+      "sourceId": "stat-news",
+      "categories": ["health"],
+      "summary": "The Jehovah's Witnesses have partly eased their long-standing prohibition on the medical use of donated blood, allowing members to receive products derived from blood but maintaining a ban on transfusions of whole blood."
+    },
+    {
+      "title": "Trump touts pharma deals to offer cheaper drugs to state Medicaid programs",
+      "link": "https://www.statnews.com/2026-09-18/trump-touts-state-participation-generous-medicaid-drug-discount-program/",
+      "publishedAt": "2026-09-18T20:22:36Z",
+      "sourceId": "stat-news",
+      "categories": ["health", "business", "world"],
+      "summary": "All 50 states, Washington, D.C., and Puerto Rico will participate in the GENEROUS model, which is intended to give lower drug prices to Medicaid programs, Trump said. Many questions were left unanswered."
+    },
+    {
+      "title": "In a fight over denied claims, HCA sues out-of-state Blue Cross Blue Shield plan",
+      "link": "https://www.statnews.com/2026-09-18/hca-hospitals-sue-independence-blue-cross-prior-authorization/",
+      "publishedAt": "2026-09-18T16:41:53Z",
+      "sourceId": "stat-news",
+      "categories": ["health", "business"],
+      "summary": "Several hospitals in Texas owned by HCA Healthcare are suing Independence Blue Cross for more than $345,000 in unpaid medical claims, in a dispute that highlights the continuing fight over prior authorization."
+    },
+    {
+      "title": "Roche expands its Boston footprint with new research center",
+      "link": "https://www.statnews.com/2026-09-18/biotech-news-roche-expands-it-boston-footprint-with-research-center/",
+      "publishedAt": "2026-09-18T13:42:29Z",
+      "sourceId": "stat-news",
+      "categories": ["health", "business"]
+    },
+    {
+      "title": "Ed Sheeran admits 'mistakes' at first show since Macklemore controversy",
+      "link": "https://www.bbc.co.uk/news/articles/cm780ll1de18o",
+      "publishedAt": "2026-09-20T04:49:11Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment", "world"]
+    },
+    {
+      "title": "Everything we know about the Ed Sheeran and Macklemore controversy",
+      "link": "https://www.bbc.co.uk/news/articles/c64gvqg0k27po",
+      "publishedAt": "2026-09-20T02:00:23Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment"]
+    },
+    {
+      "title": "Strictly returns with new hosting trio as celebrities find out dance pairings",
+      "link": "https://www.bbc.co.uk/news/articles/c6m2rkx2evxmo",
+      "publishedAt": "2026-09-20T13:47:08Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment"]
+    },
+    {
+      "title": "Matthew Rhys' sister 'so proud of him' after historic Emmy wins",
+      "link": "https://www.bbc.co.uk/news/articles/c61wx47n0408o",
+      "publishedAt": "2026-09-20T06:12:37Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment"]
+    },
+    {
+      "title": "Oasis will not headline Glastonbury 2027, organiser Emily Eavis confirms",
+      "link": "https://www.bbc.co.uk/news/articles/cw1mvj19yvk4o",
+      "publishedAt": "2026-09-18T10:40:55Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment"]
+    },
+    {
+      "title": "Tenko and Coronation Street actress Stephanie Cole dies aged 84",
+      "link": "https://www.bbc.co.uk/news/articles/ckz7zg4ez0peo",
+      "publishedAt": "2026-09-18T15:27:01Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment"]
+    },
+    {
+      "title": "British rapper Sway dies aged 44",
+      "link": "https://www.bbc.co.uk/news/articles/c6y9zgx5vy2go",
+      "publishedAt": "2026-09-18T11:03:29Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment"]
+    },
+    {
+      "title": "Zara Larsson criticises White House for using her song in deportation video",
+      "link": "https://www.bbc.co.uk/news/articles/cqr7d3l0y2zpo",
+      "publishedAt": "2026-09-18T01:20:33Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment", "world"]
+    },
+    {
+      "title": "Johnny Marr guitars sell for almost £4m at auction",
+      "link": "https://www.bbc.co.uk/news/articles/cmx2zg345drgo",
+      "publishedAt": "2026-09-18T07:07:46Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment"]
+    },
+    {
+      "title": "AI not a threat to films, say Shaun the Sheep creators",
+      "link": "https://www.bbc.co.uk/news/articles/c8y5z7d37yzzo",
+      "publishedAt": "2026-09-18T11:51:22Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment", "tech"]
+    },
+    {
+      "title": "GTA 6 soundtrack reveal revives digital release debate",
+      "link": "https://www.bbc.co.uk/news/articles/cm3wjlxjnwg3o",
+      "publishedAt": "2026-09-17T14:29:50Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment", "tech"]
+    },
+    {
+      "title": "Unheard Oasis recordings valued at £1.6m for sale",
+      "link": "https://www.bbc.co.uk/news/articles/c6e30gxjwxv1o",
+      "publishedAt": "2026-09-18T13:51:45Z",
+      "sourceId": "bbc-entertainment",
+      "categories": ["entertainment"]
+    },
+    {
+      "title": "Santa Cruz police chief Bernie Escalante to retire after 30 years - Local News Matters",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQN0dTNC1SR1J6MUJWaWk3TVcxNXh5NFI2QmVSR2dTbkR1c200SmxiS3FqbmRTS0hXWTJTV3ZobEl2Q19iaDZMWUd1NUF3NjJxQ0RPT3JDbTBPa09wVUkzSXM3dnZVZ2dLTFFLNVJjMUI4TmtPSFZOYThCZjBiemcyNG5sQWdtXzVVa3Fsc3hoRGxJRzJaWUpKOXZHMkRmMldPeU9saDlJMXBqdw?oc=5",
+      "publishedAt": "2026-09-20T14:00:00Z",
+      "sourceId": "gn-local",
+      "categories": ["local"]
+    },
+    {
+      "title": "Locals, South Pittsburg leaders come together following storm damage - Local 3 News",
+      "link": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNbDJnWm41TUI0T3ZqOTJpNnBhaG40OVozdHlHSDJCRGJIeXdtb3E5TWgyM2tGX3M0QTBLbS0wbTFwUld1Si1BcXZ5SE1ncnFDdVJfNVFicWVHNjJmNUluYll6Rk9jVnNRUEctZnplcWxWQi1RVFlkRDNrUGI3QjQwMGRBTllld3B6SjN3VXdIdW9jZzRadlFvTnBPTmJoUjlPdEwwNExxdThEak9pTEJOSVJIN2lZUmt0QndJRkNGUHFVMnpYRXozazBVNlotcnd0d0FUVlE0aGN2Q1Y2Z2tRajZYLUZOM3VGRkhr?oc=5",
+      "publishedAt": "2026-09-20T14:39:40Z",
+      "sourceId": "gn-local",
+      "categories": ["local"]
+    },
+    {
+      "title": "House on Ormond's North Beach Street sells for $2.75M - Observer Local News",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOMUJrSzJpQkV4eV9kV0NYTEhGQklLMG93UXVPdDdSTU9zZGNleXY2cFphTDBDb3VhUy1KMHVWTzYwUkxWaGFjSlRoR3dVeVpUcV83QndlYTRlRUJQSk5WRnVFUm1BeHpjS0hJajgyQmUwMXBlVWZLQ2pKTjl2T09Id29VazJVa0NqV2dRYlVIN3g1Ull6ZTc4SHJ3R1pEampqTWU1cQ?oc=5",
+      "publishedAt": "2026-09-20T13:00:00Z",
+      "sourceId": "gn-local",
+      "categories": ["local"]
+    },
+    {
+      "title": "Florist shop sells flowers, soaps, gifts — and beef - WyomingNews.com",
+      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOMFNZbEhwa2NsZkpDc3RLKHdBbXF0WnNwNzhBMlhrNDB6bjRaQVp0aWRRWk5UbU9ySndkaXJNa0Q1V3V5cVViSy1ZeGc3RTBpWTA2aW1QLXd4OVprdVRXM3l6ZHY3eFdSX25iTHpDZUM3eUIwQjAxMEVQNGVPLXltaEZnMGh6bmhkN3BTc25wNVRsV29lNFBrVDgxVzNfREJWNkJZX0EtQlRIemM3UmV6Y1AtTW1CY3pOYU1tdzh0MDhQbkd6Sjk4RVlITTk1a3ItU1cxTFJEUlk?oc=5",
+      "publishedAt": "2026-09-20T10:00:00Z",
+      "sourceId": "gn-local",
+      "categories": ["local"]
+    },
+    {
+      "title": "Your latest forecast - spectrumlocalnews.com",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOVUhGQ0VsZ1IxUFdkZFRnUnVUYXRLMzYzdGF3U0F3OHd1MnVuV0YyNDNVTXJybTZVM3YzS29xRWFKeU8yUTNocHBFdFRaQ0tXY3FTaE1vWlcwal92RE1mc09ITkszYmlUTTVpS25TaHA0X1QtMUh0ZTdfNmhGLVRETl9BODlkaFJlYVVOOUNxaUhxNnBa?oc=5",
+      "publishedAt": "2026-09-20T13:52:00Z",
+      "sourceId": "gn-local",
+      "categories": ["local"]
+    },
+    {
+      "title": "Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say",
+      "link": "https://www.theguardian.com/us-news/2026/sep/18/us-men-deported-hotel-equatorial-guinea",
+      "publishedAt": "2026-09-18T23:08:49Z",
+      "sourceId": "guardian-world",
+      "categories": ["world"],
+      "author": "Maanvi Singh",
+      "summary": "Group trapped at Hotel Bamy after US removal as rights groups sound alarm over poor conditions and violence"
+    },
+    {
+      "title": "Survivors recount panic and struggle to breathe in Nigerian prison cell where 37 died",
+      "link": "https://www.theguardian.com/world/2026/sep/18/survivor-panic-struggle-breathe-nigeria-prison-cell-died-minna",
+      "publishedAt": "2026-09-18T17:27:39Z",
+      "sourceId": "guardian-world",
+      "categories": ["world"],
+      "author": "Eromo Egbejule",
+      "summary": "Police fire teargas as protests break out in city of Minna after deaths of suspected illegal goldminers, many of whom were children"
+    },
+    {
+      "title": "British woman who was kidnapped in Malawi rescued by police after shootout",
+      "link": "https://www.theguardian.com/world/2026/sep/18/british-woman-kidnapped-malawi-police-shootout",
+      "publishedAt": "2026-09-18T11:21:36Z",
+      "sourceId": "guardian-world",
+      "categories": ["world"],
+      "author": "Rachel Savage",
+      "summary": "Four of Nusrat Osman's alleged abductors were killed during rescue after she was taken from outside her home in Blantyre last week"
+    },
+    {
+      "title": "'We demand the truth': Olga Tokarczuk and JM Coetzee lead calls for proof of life of disappeared Eritrean writers",
+      "link": "https://www.theguardian.com/books/2026/sep/18/olga-tokarczuk-j-m-coetzee-lead-calls-for-release-of-disappeared-eritrean-writers",
+      "publishedAt": "2026-09-18T08:30:12Z",
+      "sourceId": "guardian-world",
+      "categories": ["world"],
+      "author": "Ella Creamer",
+      "summary": "More than 180 writers sign letter renewing calls for information on 12 authors detained incommunicado since 2001 crackdown on free speech"
+    },
+    {
+      "title": "Michelle Bachelet withdraws from race to become UN secretary general",
+      "link": "https://www.theguardian.com/world/2026/sep/20/former-president-of-chile-withdraws-from-race-to-become-un-secretary-general",
+      "publishedAt": "2026-09-20T12:04:08Z",
+      "sourceId": "guardian-world",
+      "categories": ["world"],
+      "author": "Reuters in Geneva",
+      "summary": "Former president of Chile drops out after support collapsed in security council straw poll, leaving seven candidates in contest"
+    },
+    {
+      "title": "Brazil's Lula announces higher welfare payments and free weight-loss jabs ahead of election",
+      "link": "https://www.theguardian.com/world/2026/sep/18/brazil-lula-welfare-payments-weight-loss-jabs-election",
+      "publishedAt": "2026-09-18T17:10:37Z",
+      "sourceId": "guardian-world",
+      "categories": ["world"],
+      "author": "Tiago Rogero",
+      "summary": "Critics say moves from leftwing incumbent president are electorally motivated two weeks before Brazil's elections"
+    },
+    {
+      "title": "New cat species identified for first time in more than a century in Bolivia",
+      "link": "https://www.theguardian.com/world/2026/sep/17/new-cat-species-identified-bolivia",
+      "publishedAt": "2026-09-17T20:43:38Z",
+      "sourceId": "guardian-world",
+      "categories": ["science"],
+      "author": "Reuters",
+      "summary": "Diminutive wild feline discovered in Bolivia's Yungas cloud forest is smaller than the average domestic cat, researchers say"
+    },
+    {
+      "title": "All smiles in Strasbourg but uncertainty clouds Canada's EU membership plan",
+      "link": "https://www.theguardian.com/world/2026/sep/17/smiles-strasbourg-uncertainty-canada-eu-membership-plan-mark-carney",
+      "publishedAt": "2026-09-17T15:46:15Z",
+      "sourceId": "guardian-world",
+      "categories": ["world"],
+      "author": "Jennifer Rankin",
+      "summary": "Although Mark Carney welcomed the offer to become the bloc's first associate member, no one seems to know what that means"
+    },
+    {
+      "title": "Battle of Chile director Patricio Guzmán dies aged 85",
+      "link": "https://www.theguardian.com/film/2026/sep/16/battle-of-chile-director-patricio-guzman-dies-aged-85",
+      "publishedAt": "2026-09-16T13:15:02Z",
+      "sourceId": "guardian-world",
+      "categories": ["entertainment"],
+      "author": "Andrew Pulver",
+      "summary": "Passionate documentary maker won international acclaim for unsparing but poetic films exploring the impact of the Pinochet regime in Chile"
+    },
+    {
+      "title": "Why China is pushing back on US warnings over rapid AI development",
+      "link": "https://www.theguardian.com/world/2026/sep/20/why-china-is-pushing-back-on-us-warnings-over-rapid-ai-development",
+      "publishedAt": "2026-09-20T06:00:09Z",
+      "sourceId": "guardian-world",
+      "categories": ["world", "tech"],
+      "author": "Rebecca Bailey",
+      "summary": "Beijing believes slowdown calls aim to lock in US advantage, and is pursuing a different balance between safety and pace"
+    },
+    {
+      "title": "Japan raises interest rates to 31-year high to curb impact of rising prices",
+      "link": "https://www.theguardian.com/business/2026/sep/18/japan-raises-interest-rates-to-31-year-high-rising-prices",
+      "publishedAt": "2026-09-18T07:14:13Z",
+      "sourceId": "guardian-world",
+      "categories": ["business"],
+      "author": "Mark Sweney",
+      "summary": "Increase from 1% to 1.25% follows US Federal Reserve and European Central Bank tightening monetary policy"
+    },
+    {
+      "title": "South Korea will not send military to support US war on Iran, defying Trump pressure",
+      "link": "https://www.theguardian.com/world/2026/sep/18/south-korea-will-not-send-military-to-support-us-war-on-iran-defying-trump-pressure",
+      "publishedAt": "2026-09-18T05:54:29Z",
+      "sourceId": "guardian-world",
+      "categories": ["world"],
+      "author": "Reuters",
+      "summary": "Seoul resolves speculation over sending military to the strait of Hormuz, saying there won't be deployment that would involve or enter war"
+    },
+    {
+      "title": "Weather tracker: Thunderstorms hit Spain as Japan braces for typhoon",
+      "link": "https://www.theguardian.com/environment/2026/sep/18/weather-tracker-thunderstorms-spain-japan-typhoon",
+      "publishedAt": "2026-09-18T08:36:50Z",
+      "sourceId": "guardian-world",
+      "categories": ["science"],
+      "author": "James Michelin for MetDesk",
+      "summary": "At least one person dead as stormy weather causes severe flooding in Barcelona and Valencia"
+    },
+    {
+      "title": "Moscow attacked by more than 1,000 Ukrainian drones",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/20/moscow-attacked-by-more-than-1000-ukrainian-drones",
+      "publishedAt": "2026-09-20T13:10:35Z",
+      "sourceId": "aljazeera",
+      "categories": ["world"],
+      "isVideo": true
+    },
+    {
+      "title": "Trump says monumental arch in Washington, DC will also be military complex",
+      "link": "https://www.aljazeera.com/news/2026/9/20/trump-says-monumental-arch-in-washington-dc-will-also-be-military-complex",
+      "publishedAt": "2026-09-20T15:16:38Z",
+      "sourceId": "aljazeera",
+      "categories": ["world"]
+    },
+    {
+      "title": "Kenya's Ngetich breaks women-only half-marathon world record by a second",
+      "link": "https://www.aljazeera.com/sports/2026/9/20/kenyas-ngetich-breaks-women-only-half-marathon-world-record-by-a-second",
+      "publishedAt": "2026-09-20T15:30:10Z",
+      "sourceId": "aljazeera",
+      "categories": ["sports"]
+    },
+    {
+      "title": "Salah scores hat-trick as Trabzonspor beat Galatasaray in Turkish league",
+      "link": "https://www.aljazeera.com/sports/2026/9/20/salah-scores-hat-trick-as-trabzonspor-beat-galatasaray-in-turkish-league",
+      "publishedAt": "2026-09-20T09:52:30Z",
+      "sourceId": "aljazeera",
+      "categories": ["sports"]
+    },
+    {
+      "title": "Iran win Asian Games basketball bronze amid emotional scenes",
+      "link": "https://www.aljazeera.com/sports/2026/9/20/iran-win-asian-games-basketball-bronze-amid-emotional-scenes",
+      "publishedAt": "2026-09-20T13:13:27Z",
+      "sourceId": "aljazeera",
+      "categories": ["sports"]
+    },
+    {
+      "title": "Anthems, transport, housing: What's gone wrong at the Asian Games in Japan?",
+      "link": "https://www.aljazeera.com/sports/2026/9/20/anthems-transport-housing-whats-gone-wrong-at-the-asian-games-in-japan",
+      "publishedAt": "2026-09-20T11:18:21Z",
+      "sourceId": "aljazeera",
+      "categories": ["sports"]
+    },
+    {
+      "title": "Humanoid robots fight in cage match in Shanghai",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/20/humanoid-robots-fight-in-cage-match-in-shanghai",
+      "publishedAt": "2026-09-20T14:12:28Z",
+      "sourceId": "aljazeera",
+      "categories": ["tech"],
+      "isVideo": true
+    },
+    {
+      "title": "Former Pakistan PM Imran Khan's sister arrested before planned PTI march",
+      "link": "https://www.aljazeera.com/news/2026/9/20/former-pakistan-pm-imran-khans-sister-arrested-ahead-of-planned-pti-march",
+      "publishedAt": "2026-09-20T12:57:57Z",
+      "sourceId": "aljazeera",
+      "categories": ["world"]
+    },
+    {
+      "title": "Israeli forces kill Palestinian near Jenin in occupied West Bank",
+      "link": "https://www.aljazeera.com/news/2026/9/20/israeli-forces-kill-palestinian-near-jenin-in-occupied-west-bank",
+      "publishedAt": "2026-09-20T12:11:22Z",
+      "sourceId": "aljazeera",
+      "categories": ["world"]
+    },
+    {
+      "title": "What are Iran's latest conditions to end its war with the US?",
+      "link": "https://www.aljazeera.com/news/2026/9/20/what-are-irans-new-conditions-to-end-its-war-with-the-us",
+      "publishedAt": "2026-09-20T11:21:06Z",
+      "sourceId": "aljazeera",
+      "categories": ["world"]
+    },
+    {
+      "title": "Hundreds protest in Tunisia for release of jailed Gaza flotilla activists",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/20/hundreds-protest-in-tunisia-for-release-of-jailed-gaza-flotilla-activists",
+      "publishedAt": "2026-09-20T14:38:01Z",
+      "sourceId": "aljazeera",
+      "categories": ["world"],
+      "isVideo": true
+    },
+    {
+      "title": "Pro-Palestine protesters demonstrate outside Ed Sheeran concert",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/20/pro-palestine-protesters-demonstrate-outside-ed-sheeran-concert",
+      "publishedAt": "2026-09-20T12:00:16Z",
+      "sourceId": "aljazeera",
+      "categories": ["entertainment"],
+      "isVideo": true
+    }
+  ]
+}
