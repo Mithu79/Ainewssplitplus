@@ -15,6 +15,7 @@ export default defineConfig({
       // Never touch the network from tests: serve the bundled snapshot.
       NEWS_SPLIT_OFFLINE: "always",
       CACHE_FILE: ".cache/test-newssplit.json",
+      USERS_FILE: ".cache/test-newssplit-users.json",
     },
   },
 });

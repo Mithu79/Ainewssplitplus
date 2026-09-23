@@ -186,6 +186,7 @@ export function normalizeItem(raw: RawItem, ctx: NormalizeContext): Article | nu
     score: 0,
     breaking: false,
     isVideo,
+    language: source.language,
   };
 
   return article;

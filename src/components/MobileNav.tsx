@@ -5,11 +5,14 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CATEGORY_ICON, Icon, LogoMark } from "./Icons";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import type { CategoryMeta } from "@/lib/categories";
+import { useI18n } from "@/lib/i18n/LocaleProvider";
 
 export function MobileNav({ categories }: { categories: CategoryMeta[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { dict } = useI18n();
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -65,7 +68,12 @@ export function MobileNav({ categories }: { categories: CategoryMeta[] }) {
               </div>
             </div>
 
-            <p className="kicker px-2 pb-1 pt-3 text-faint">Categories</p>
+            <div className="flex items-center justify-between px-2 pt-2">
+              <span className="text-xs font-semibold text-muted">{dict.nav.language}</span>
+              <LanguageSwitcher />
+            </div>
+
+            <p className="kicker px-2 pb-1 pt-3 text-faint">{dict.footer.categories}</p>
             {categories.map((category) => {
               const active = pathname.startsWith(`/category/${category.id}`);
               return (
@@ -93,9 +101,10 @@ export function MobileNav({ categories }: { categories: CategoryMeta[] }) {
 
             <p className="kicker px-2 pb-1 pt-4 text-faint">NewsSplit</p>
             {[
-              { href: "/sources", label: "Sources & health", icon: "activity" as const },
-              { href: "/about", label: "How it works", icon: "sparkles" as const },
-              { href: "/feed", label: "RSS output", icon: "rss" as const },
+              { href: "/dashboard", label: dict.nav.dashboard, icon: "sliders" as const },
+              { href: "/sources", label: dict.nav.sources, icon: "activity" as const },
+              { href: "/about", label: dict.nav.about, icon: "sparkles" as const },
+              { href: "/feed", label: dict.footer.rssOutput, icon: "rss" as const },
             ].map((item) => (
               <Link
                 key={item.href}

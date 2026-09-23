@@ -37,7 +37,16 @@ export interface FeedSource {
   enabled?: boolean;
   /** Builds the endpoint at request time (e.g. region aware Google News feeds). */
   resolveUrl?: (ctx: { region: string; locale: GoogleNewsLocale }) => string;
+  /**
+   * Language of the headlines this feed publishes. Omitted = English.
+   * Copied onto every article so `/api/news?lang=bn` and the native-language
+   * rail can filter on it. Headlines are never translated.
+   */
+  language?: ArticleLanguage;
 }
+
+/** Headline languages carried by the registry. English feeds leave `language` unset. */
+export type ArticleLanguage = "en" | "bn" | "hi" | "ta";
 
 /** A single normalised story, regardless of which feed format it came from. */
 export interface Article {
@@ -64,6 +73,8 @@ export interface Article {
   score: number;
   breaking: boolean;
   isVideo: boolean;
+  /** Language the headline was filed in (feed-declared). Defaults to "en". */
+  language?: ArticleLanguage;
 }
 
 /** A group of articles from different outlets covering the same story. */
@@ -118,6 +129,8 @@ export interface NewsQuery {
   region?: string;
   /** Group articles that cover the same story. */
   clustered?: boolean;
+  /** Only stories filed in this language (e.g. "bn"). */
+  lang?: ArticleLanguage;
 }
 
 export interface FacetValue {

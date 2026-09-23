@@ -12,6 +12,7 @@ import { loadSnapshotArticles, snapshotCapturedAt } from "./snapshot";
 import { allSources, resolveSourceUrl } from "./sources";
 import { salientTokens, tokenize } from "./text";
 import type {
+  ArticleLanguage,
   Article,
   CategoryId,
   Cluster,
@@ -438,6 +439,11 @@ export async function queryNews(query: NewsQuery = {}): Promise<NewsResult> {
     pool = pool.filter((article) => article.categories.includes(category));
   }
 
+  // Native-language feeds are opt-in: without `lang` the English rails stay English,
+  // with `lang=bn|hi|ta` only that language is returned.
+  const wantedLang = query.lang ?? "en";
+  pool = pool.filter((article) => (article.language ?? "en") === wantedLang);
+
   if (query.source) {
     const wanted = query.source.toLowerCase();
     pool = pool.filter(
@@ -521,9 +527,31 @@ export function getArticle(id: string): Article | undefined {
   return getState().byId.get(id);
 }
 
+/** Articles filed in English (or with no declared language) — the default pool for every rail. */
+function englishArticles(state: State): Article[] {
+  return state.articles.filter((article) => !article.language || article.language === "en");
+}
+
+/** Headlines filed in a non-English language, newest first. */
+export function getLanguageArticles(lang: ArticleLanguage, limit = 12): Article[] {
+  return getState()
+    .articles.filter((article) => article.language === lang)
+    .sort(byNewest)
+    .slice(0, limit);
+}
+
+/** How many indexed headlines each non-English language currently has. */
+export function languageCounts(): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const article of getState().articles) {
+    if (article.language && article.language !== "en") counts[article.language] = (counts[article.language] ?? 0) + 1;
+  }
+  return counts;
+}
+
 export function getBreaking(limit = 12): Article[] {
   const state = getState();
-  return state.articles
+  return englishArticles(state)
     .filter((article) => article.breaking)
     .sort(byNewest)
     .slice(0, limit);
@@ -550,18 +578,18 @@ export function clusterSourceCounts(): Map<string, number> {
 
 /** Long-form picks: stories whose feeds shipped a real body. */
 export function getDeepReads(limit = 6): Article[] {
-  return getState()
-    .articles.filter((article) => (article.wordCount ?? 0) >= 500 && !article.isVideo)
+  return englishArticles(getState())
+    .filter((article) => (article.wordCount ?? 0) >= 500 && !article.isVideo)
     .sort(byRank)
     .slice(0, limit);
 }
 
 export function getTopStories(limit = 8): Article[] {
-  return diversify(sortArticles(getState().articles, "rank")).slice(0, limit);
+  return diversify(sortArticles(englishArticles(getState()), "rank")).slice(0, limit);
 }
 
 export function getLatest(limit = 20): Article[] {
-  return [...getState().articles].sort(byNewest).slice(0, limit);
+  return englishArticles(getState()).sort(byNewest).slice(0, limit);
 }
 
 export function getRelated(article: Article, limit = 6): Article[] {

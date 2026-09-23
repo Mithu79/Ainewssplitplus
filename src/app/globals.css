@@ -406,3 +406,101 @@ body {
     box-shadow: none;
   }
 }
+
+/* ───────────────────────────── legal prose ───────────────────────────── */
+
+.prose-legal {
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.prose-legal h2 {
+  font-family: var(--font-display, inherit);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 2.4rem 0 0.9rem;
+  padding-top: 0.25rem;
+}
+.prose-legal section:first-of-type h2 {
+  margin-top: 0;
+}
+.prose-legal h3 {
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--ink);
+  margin: 1.6rem 0 0.5rem;
+}
+.prose-legal p {
+  margin: 0 0 1rem;
+}
+.prose-legal ul,
+.prose-legal ol {
+  margin: 0 0 1.1rem;
+  padding-left: 1.4rem;
+}
+.prose-legal ul {
+  list-style: disc;
+}
+.prose-legal ol {
+  list-style: decimal;
+}
+.prose-legal li {
+  margin: 0.3rem 0;
+  padding-left: 0.2rem;
+}
+.prose-legal li::marker {
+  color: var(--faint);
+}
+.prose-legal strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+.prose-legal a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms;
+}
+.prose-legal a:hover {
+  text-decoration-color: var(--accent);
+}
+.prose-legal code {
+  font-size: 0.86em;
+  padding: 0.1em 0.4em;
+  border-radius: 0.4em;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.prose-legal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1.4rem;
+}
+.prose-legal th,
+.prose-legal td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+.prose-legal th {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  font-weight: 700;
+}
+.prose-legal blockquote {
+  margin: 1.2rem 0;
+  padding: 0.8rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-tint);
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: var(--muted);
+}
