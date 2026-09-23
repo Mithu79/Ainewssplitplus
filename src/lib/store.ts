@@ -7,22 +7,23 @@ import { fetchText, mapLimit } from "./fetcher";
 import { articleId } from "./hash";
 import { normalizeItem, parseFeedDate } from "./normalize";
 import { parseFeedXml } from "./parse-feed";
-import { applyRanking, byNewest, byRank, diversify, sortArticles } from "./rank";
+import { applyRanking, byNewest, byRank, diversify, interleaveByLanguage, sortArticles } from "./rank";
 import { loadSnapshotArticles, snapshotCapturedAt } from "./snapshot";
 import { allSources, resolveSourceUrl } from "./sources";
 import { salientTokens, tokenize } from "./text";
-import type {
-  ArticleLanguage,
-  Article,
-  CategoryId,
-  Cluster,
-  DataMode,
-  Facets,
-  FeedSource,
-  NewsQuery,
-  NewsResult,
-  SourceHealth,
-  StoreStatus,
+import {
+  MIX_LANGUAGES,
+  type ArticleLanguage,
+  type Article,
+  type CategoryId,
+  type Cluster,
+  type DataMode,
+  type Facets,
+  type FeedSource,
+  type NewsQuery,
+  type NewsResult,
+  type SourceHealth,
+  type StoreStatus,
 } from "./types";
 
 /**
@@ -439,10 +440,14 @@ export async function queryNews(query: NewsQuery = {}): Promise<NewsResult> {
     pool = pool.filter((article) => article.categories.includes(category));
   }
 
-  // Native-language feeds are opt-in: without `lang` the English rails stay English,
-  // with `lang=bn|hi|ta` only that language is returned.
-  const wantedLang = query.lang ?? "en";
-  pool = pool.filter((article) => (article.language ?? "en") === wantedLang);
+  // The default pool mixes Bengali, English and Hindi so Top stories and every
+  // category listing read multilingual; `lang` narrows to a single desk
+  // (used by /api/news?lang=, the native-language rail and language filters).
+  if (query.lang) {
+    pool = pool.filter((article) => (article.language ?? "en") === query.lang);
+  } else {
+    pool = pool.filter((article) => MIX_LANGUAGES.includes(article.language ?? "en"));
+  }
 
   if (query.source) {
     const wanted = query.source.toLowerCase();
@@ -461,6 +466,10 @@ export async function queryNews(query: NewsQuery = {}): Promise<NewsResult> {
   } else {
     pool = sortArticles(pool, sort);
     if (sort === "rank" && !category) pool = diversify(pool);
+    // Guarantee a visible en → bn → hi alternation on ranked listings. Newest
+    // first stays pure recency (the mix happens naturally across timestamps),
+    // and search stays relevance-ranked.
+    if (sort === "rank" && !query.lang) pool = interleaveByLanguage(pool);
   }
 
   const facets = buildFacets(pool, state);
@@ -527,9 +536,14 @@ export function getArticle(id: string): Article | undefined {
   return getState().byId.get(id);
 }
 
-/** Articles filed in English (or with no declared language) — the default pool for every rail. */
+/** Articles filed in English (or with no declared language) — the desk-specific pool. */
 function englishArticles(state: State): Article[] {
   return state.articles.filter((article) => !article.language || article.language === "en");
+}
+
+/** Articles filed in any of the mixed front-page languages (bn · en · hi). */
+function mixedArticles(state: State): Article[] {
+  return state.articles.filter((article) => MIX_LANGUAGES.includes(article.language ?? "en"));
 }
 
 /** Headlines filed in a non-English language, newest first. */
@@ -584,8 +598,12 @@ export function getDeepReads(limit = 6): Article[] {
     .slice(0, limit);
 }
 
+/**
+ * The home page's "Top stories": ranked across Bengali, English and Hindi and
+ * then interleaved en → bn → hi so the lead grid is multilingual by design.
+ */
 export function getTopStories(limit = 8): Article[] {
-  return diversify(sortArticles(englishArticles(getState()), "rank")).slice(0, limit);
+  return interleaveByLanguage(diversify(sortArticles(mixedArticles(getState()), "rank"))).slice(0, limit);
 }
 
 export function getLatest(limit = 20): Article[] {

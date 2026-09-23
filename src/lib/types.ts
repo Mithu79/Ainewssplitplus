@@ -40,13 +40,22 @@ export interface FeedSource {
   /**
    * Language of the headlines this feed publishes. Omitted = English.
    * Copied onto every article so `/api/news?lang=bn` and the native-language
-   * rail can filter on it. Headlines are never translated.
+   * rail can filter on it. Headlines render as filed by default — visitors can
+   * opt into machine translation via /api/translate (one-click "Read in").
    */
   language?: ArticleLanguage;
 }
 
 /** Headline languages carried by the registry. English feeds leave `language` unset. */
 export type ArticleLanguage = "en" | "bn" | "hi" | "ta";
+
+/**
+ * Languages mixed into "Top stories" and every non-local category listing.
+ * The front page deliberately alternates English, Bengali and Hindi coverage
+ * so the home page reads multilingual. Tamil stays registered but opt-in
+ * (`/api/news?lang=ta`, the native-language rail).
+ */
+export const MIX_LANGUAGES: ArticleLanguage[] = ["en", "bn", "hi"];
 
 /** A single normalised story, regardless of which feed format it came from. */
 export interface Article {

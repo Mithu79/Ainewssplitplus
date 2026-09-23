@@ -112,9 +112,11 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
             </Suspense>
             <p className="flex items-start gap-2 rounded-xl border border-line bg-surface px-4 py-3 text-xs leading-relaxed text-muted">
               <Icon name="info" className="mt-px h-4 w-4 shrink-0 text-faint" />
-              Local coverage is built on demand: your region is turned into a Google News query plus any feeds you list in{" "}
-              <code className="rounded bg-bg px-1 py-0.5 text-[11px]">LOCAL_FEEDS</code>, then it is cached for{" "}
-              {Math.round(config.staleAfterMs / 60_000)} minutes like every other category.
+              The Local desk reads only popular Bengali publishers — আনন্দবাজার পত্রিকা, প্রথম আলো, এই সময়, বর্তমান and
+              friends — through Google News <code className="rounded bg-bg px-1 py-0.5 text-[11px]">site:</code> feeds,
+              cached for {Math.round(config.staleAfterMs / 60_000)} minutes like every other category. Extra feeds you
+              list in <code className="rounded bg-bg px-1 py-0.5 text-[11px]">LOCAL_FEEDS</code> are merged in; the region
+              picker labels and caches on-demand coverage for a place.
             </p>
           </>
         )}

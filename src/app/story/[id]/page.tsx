@@ -8,6 +8,8 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { SourceBadge } from "@/components/SourceBadge";
 import { StoryGrid } from "@/components/StoryCard";
 import { TimeAgo } from "@/components/TimeAgo";
+import { TranslateBar } from "@/components/translate/TranslateBar";
+import { TranslatableText } from "@/components/translate/TranslatableText";
 import { categoryAccent, getCategory } from "@/lib/categories";
 import { config } from "@/lib/config";
 import { formatFullDate } from "@/lib/format";
@@ -54,6 +56,7 @@ export default async function StoryPage({ params }: PageProps) {
           </>
         )}
         <span className="truncate text-muted">Coverage</span>
+        <TranslateBar className="ml-auto" compact />
       </nav>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)]">
@@ -74,9 +77,15 @@ export default async function StoryPage({ params }: PageProps) {
           </ArticleImage>
 
           <div className="flex flex-col gap-4 p-5 md:p-7">
-            <h1 className="display text-[1.7rem] leading-[1.15] md:text-[2.3rem]">{lead.title}</h1>
+            <h1 className="display text-[1.7rem] leading-[1.15] md:text-[2.3rem]">
+              <TranslatableText text={lead.title} lang={lead.language} />
+            </h1>
 
-            {lead.summary && <p className="text-[0.95rem] leading-relaxed text-muted md:text-base">{lead.summary}</p>}
+            {lead.summary && (
+              <p className="text-[0.95rem] leading-relaxed text-muted md:text-base">
+                <TranslatableText text={lead.summary} lang={lead.language} />
+              </p>
+            )}
 
             <MetaRow article={lead} className="text-xs" />
 
@@ -131,7 +140,7 @@ export default async function StoryPage({ params }: PageProps) {
                       rel="noopener noreferrer nofollow"
                       className="line-clamp-2 text-[0.85rem] font-semibold leading-snug decoration-1 underline-offset-2 hover:underline"
                     >
-                      {item.title}
+                      <TranslatableText text={item.title} lang={item.language} />
                     </a>
                     <p className="mt-1 flex flex-wrap items-center gap-x-2 text-[11px] text-faint">
                       <span className="font-semibold text-muted">{item.sourceName}</span>

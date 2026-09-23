@@ -79,7 +79,7 @@ export const CATEGORIES: CategoryMeta[] = [
     id: "local",
     label: "Local News",
     short: "Local",
-    tagline: "What is happening where you are — pick your region.",
+    tagline: "Popular Bengali publishers — Kolkata, West Bengal and Bangladesh, as filed in বাংলা.",
     accent: "#06b6d4",
     icon: "pin",
     href: "/category/local",

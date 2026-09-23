@@ -2,9 +2,9 @@ import { ArticleImage } from "./ArticleImage";
 import { BreakingPill, CategoryChip, ClusterPill, MetaRow, VideoPill } from "./Badges";
 import { CATEGORY_ICON, Icon, type IconName } from "./Icons";
 import { TimeAgo } from "./TimeAgo";
+import { TranslatableText } from "./translate/TranslatableText";
 import { cn } from "@/lib/cn";
 import { categoryAccent, getCategory } from "@/lib/categories";
-import { truncate } from "@/lib/text";
 import type { Article } from "@/lib/types";
 
 export type CardVariant = "hero" | "feature" | "rail" | "list" | "compact";
@@ -42,7 +42,7 @@ export function StoryCard({
       aria-label={`${article.title} — opens on ${article.sourceName}`}
     >
       <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 group-hover:bg-[length:100%_1px]">
-        {article.title}
+        <TranslatableText text={article.title} lang={article.language} />
       </span>
     </a>
   );
@@ -83,7 +83,9 @@ export function StoryCard({
           </div>
           <h2 className="display text-[1.75rem] leading-[1.12] tracking-tight md:text-[2.6rem]">{title}</h2>
           {article.summary && (
-            <p className="max-w-3xl text-[0.95rem] leading-relaxed text-muted md:text-base">{truncate(article.summary, 260)}</p>
+            <p className="max-w-3xl text-[0.95rem] leading-relaxed text-muted md:text-base">
+              <TranslatableText text={article.summary} lang={article.language} truncate={260} />
+            </p>
           )}
           <MetaRow article={article} className="mt-1 text-xs" />
         </div>
@@ -125,7 +127,11 @@ export function StoryCard({
             {cluster}
           </div>
           <h3 className="display text-lg leading-snug md:text-xl">{title}</h3>
-          {article.summary && <p className="line-clamp-2 text-sm leading-relaxed text-muted">{truncate(article.summary, 200)}</p>}
+          {article.summary && (
+            <p className="line-clamp-2 text-sm leading-relaxed text-muted">
+              <TranslatableText text={article.summary} lang={article.language} truncate={200} />
+            </p>
+          )}
           <MetaRow article={article} className="mt-auto pt-1" showCategory={false} />
         </div>
         <ArticleImage
@@ -164,7 +170,11 @@ export function StoryCard({
       </ArticleImage>
       <div className="flex flex-1 flex-col gap-2.5 p-4">
         <h3 className="display line-clamp-3 text-[1.075rem] leading-snug">{title}</h3>
-        {article.summary && <p className="line-clamp-2 text-[0.84rem] leading-relaxed text-muted">{truncate(article.summary, 170)}</p>}
+        {article.summary && (
+          <p className="line-clamp-2 text-[0.84rem] leading-relaxed text-muted">
+            <TranslatableText text={article.summary} lang={article.language} truncate={170} />
+          </p>
+        )}
         <div className="mt-auto flex items-center justify-between gap-2 pt-1">
           <MetaRow article={article} showCategory={showCategory} showReading={false} className="min-w-0" />
           {cluster}

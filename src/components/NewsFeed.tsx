@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Icon } from "./Icons";
 import { EmptyState, StoryCard, StoryGridSkeleton } from "./StoryCard";
+import { TranslateBar } from "./translate/TranslateBar";
 import type { Article, NewsResult, SortOrder } from "@/lib/types";
 
 const PAGE_SIZE = 24;
@@ -144,6 +145,8 @@ export function NewsFeed({
           <Icon name="filter" className="h-3.5 w-3.5" />
           {total} {total === 1 ? "story" : "stories"}
         </span>
+
+        <TranslateBar compact className="ml-1" />
 
         <div className="ml-auto flex flex-wrap items-center gap-2">
           {showSourceFilter && facets.sources.length > 1 && (

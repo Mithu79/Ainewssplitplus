@@ -2,7 +2,9 @@
  * Locale registry for the NewsSplit UI.
  *
  * The UI chrome (navigation, labels, footer, auth forms) is translated;
- * headlines are always shown exactly as the publisher filed them.
+ * headlines render exactly as the publisher filed them by default — visitors
+ * can opt into one-click machine translation (Google Cloud Translation) via
+ * the "Read in" control and /api/translate.
  */
 
 export const LOCALES = ["en", "bn", "hi", "ta"] as const;
@@ -33,6 +35,18 @@ export const LOCALE_META: Record<Locale, LocaleMeta> = {
 
 export function isLocale(value: unknown): value is Locale {
   return typeof value === "string" && (LOCALES as readonly string[]).includes(value);
+}
+
+/**
+ * Locales offered by the one-click "Read in" machine-translation control
+ * (Bengali, English, Hindi). These are also the `target` values accepted by
+ * POST /api/translate. Kept isomorphic: safe to import from client components.
+ */
+export const TRANSLATE_TARGETS = ["bn", "en", "hi"] as const;
+export type TranslateTarget = (typeof TRANSLATE_TARGETS)[number];
+
+export function isTranslateTarget(value: unknown): value is TranslateTarget {
+  return typeof value === "string" && (TRANSLATE_TARGETS as readonly string[]).includes(value);
 }
 
 /** Coerce any user supplied value (cookie, query, form) to a known locale. */
