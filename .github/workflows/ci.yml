@@ -33,7 +33,7 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Unit tests (parser, normaliser, clustering, ranking, store)
+      - name: Unit tests (parser, normaliser, clustering, ranking, store, i18n, accounts)
         run: npm test
 
       - name: Build
@@ -52,4 +52,19 @@ jobs:
           curl -fsS --max-time 10 "http://127.0.0.1:3111/api/news?category=world&limit=3" | head -c 400; echo
           curl -fsS --max-time 10 "http://127.0.0.1:3111/api/feed?category=tech&limit=3" | head -c 300; echo
           curl -fsS --max-time 30 -o /dev/null -w 'front page: HTTP %{http_code}\n' "http://127.0.0.1:3111/"
+          for p in /login /signup /privacy-policy /terms-of-service /security-policy; do
+            curl -fsS --max-time 30 -o /dev/null -w "$p: HTTP %{http_code}\n" "http://127.0.0.1:3111$p"
+          done
+          # /dashboard must redirect signed-out visitors to /login
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "http://127.0.0.1:3111/dashboard")
+          loc=$(curl -s -o /dev/null -w '%{redirect_url}' --max-time 30 "http://127.0.0.1:3111/dashboard")
+          echo "/dashboard signed-out: HTTP $code -> $loc"
+          case "$code" in 302|307|308) ;; *) echo "::error::/dashboard is not protected (HTTP $code)"; exit 1;; esac
+          case "$loc" in *"/login"*) ;; *) echo "::error::/dashboard redirected somewhere other than /login"; exit 1;; esac
+          # ns-locale=bn must render the Bengali UI
+          if ! curl -fsS --max-time 30 -b ns-locale=bn "http://127.0.0.1:3111/" | grep -q 'lang="bn"'; then
+            echo "::error::Bengali locale cookie did not switch <html lang>"; exit 1
+          fi
+          # native-language feed filter
+          curl -fsS --max-time 10 "http://127.0.0.1:3111/api/news?lang=bn&limit=2" | head -c 300; echo
           kill %1

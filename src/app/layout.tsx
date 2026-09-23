@@ -1,8 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import { auth } from "@/auth";
 import { ModeBanner } from "@/components/ModeBanner";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { config } from "@/lib/config";
+import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
+import { LOCALE_META } from "@/lib/i18n/locales";
+import { getI18n } from "@/lib/i18n/server";
 import { snapshotCapturedAt } from "@/lib/snapshot";
 import { allSources } from "@/lib/sources";
 import { getStatus } from "@/lib/store";
@@ -69,28 +73,34 @@ const themeScript = `(function(){try{var k="newssplit-theme";var s=localStorage.
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const status = getStatus();
+  const [{ locale, dict }, session] = await Promise.all([getI18n(), auth()]);
+  const user = session?.user?.email
+    ? { name: session.user.name ?? session.user.email, email: session.user.email, image: session.user.image }
+    : null;
 
   return (
-    <html lang="en" data-theme="light" suppressHydrationWarning>
+    <html lang={LOCALE_META[locale].htmlLang} data-lang={locale} data-theme="light" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="flex min-h-screen flex-col bg-bg text-ink">
-        <a
-          href="#main"
-          className="sr-only z-[80] rounded-lg bg-ink px-4 py-2 text-sm font-bold text-bg focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
-        >
-          Skip to content
-        </a>
+        <LocaleProvider locale={locale} dict={dict}>
+          <a
+            href="#main"
+            className="sr-only z-[80] rounded-lg bg-ink px-4 py-2 text-sm font-bold text-bg focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
+          >
+            {dict.brand.skipToContent}
+          </a>
 
-        <SiteHeader status={status} />
-        <ModeBanner status={status} capturedAt={snapshotCapturedAt()} />
+          <SiteHeader status={status} user={user} />
+          <ModeBanner status={status} capturedAt={snapshotCapturedAt()} />
 
-        <main id="main" className="flex-1">
-          {children}
-        </main>
+          <main id="main" className="flex-1">
+            {children}
+          </main>
 
-        <SiteFooter sourceCount={allSources().length} articleCount={status.articleCount} />
+          <SiteFooter sourceCount={allSources().length} articleCount={status.articleCount} dict={dict} />
+        </LocaleProvider>
       </body>
     </html>
   );

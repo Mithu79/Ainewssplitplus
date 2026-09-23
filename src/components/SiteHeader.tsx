@@ -9,11 +9,15 @@ import { LiveStatusPill } from "./LiveStatusPill";
 import { MobileNav } from "./MobileNav";
 import { SearchBox } from "./SearchBox";
 import { ThemeToggle } from "./ThemeToggle";
+import { AccountMenu, type SessionUserSummary } from "./AccountMenu";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { CATEGORIES } from "@/lib/categories";
+import { useI18n } from "@/lib/i18n/LocaleProvider";
 import type { StoreStatus } from "@/lib/types";
 
-export function SiteHeader({ status }: { status: StoreStatus }) {
+export function SiteHeader({ status, user }: { status: StoreStatus; user: SessionUserSummary | null }) {
   const pathname = usePathname() ?? "/";
+  const { dict } = useI18n();
   const activeCategory = pathname.startsWith("/category/")
     ? pathname.split("/")[2]
     : pathname === "/"
@@ -28,10 +32,8 @@ export function SiteHeader({ status }: { status: StoreStatus }) {
           <span className="display text-[1.15rem] leading-none tracking-tight">
             News<span className="text-accent">Split</span>
           </span>
-          <span className="hidden border-l border-line pl-2.5 text-[11px] font-medium leading-tight text-faint xl:block">
-            Every story,
-            <br />
-            every source.
+          <span className="hidden max-w-[7.5rem] border-l border-line pl-2.5 text-[11px] font-medium leading-tight text-faint xl:block">
+            {dict.brand.tagline}
           </span>
         </Link>
 
@@ -43,11 +45,13 @@ export function SiteHeader({ status }: { status: StoreStatus }) {
           <div className="hidden w-52 xl:block xl:w-64">
             <SearchBox size="sm" />
           </div>
-          <Link href="/search" className="icon-button xl:hidden" aria-label="Search stories">
+          <Link href="/search" className="icon-button xl:hidden" aria-label={dict.nav.search}>
             <Icon name="search" className="h-[18px] w-[18px]" />
           </Link>
           <LiveStatusPill status={status} />
+          <LanguageSwitcher className="hidden md:inline-flex" />
           <ThemeToggle className="hidden sm:inline-flex" />
+          <AccountMenu user={user} />
           <MobileNav categories={CATEGORIES} />
         </div>
       </div>

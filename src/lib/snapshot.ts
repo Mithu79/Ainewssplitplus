@@ -82,6 +82,7 @@ export function loadSnapshotArticles(now = Date.now()): Article[] {
         score: 0,
         breaking: false,
         isVideo: Boolean(item.isVideo),
+        language: source.language,
       },
     ];
   });

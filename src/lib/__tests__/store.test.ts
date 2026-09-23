@@ -86,3 +86,27 @@ describe("store", () => {
     }
   });
 });
+
+describe("languages", () => {
+  it("keeps the English rails English and exposes native-language feeds via lang=", async () => {
+    const { getLanguageArticles, languageCounts } = await import("../store");
+    const counts = languageCounts();
+    expect(counts.bn).toBeGreaterThan(0);
+    expect(counts.hi).toBeGreaterThan(0);
+    expect(counts.ta).toBeGreaterThan(0);
+
+    const top = getTopStories(50);
+    expect(top.every((a) => !a.language || a.language === "en")).toBe(true);
+
+    const bn = await queryNews({ lang: "bn", limit: 20 });
+    expect(bn.total).toBe(counts.bn);
+    expect(bn.articles.every((a) => a.language === "bn")).toBe(true);
+    expect(bn.articles.some((a) => a.sourceName === "আনন্দবাজার পত্রিকা")).toBe(true);
+
+    const world = await queryNews({ category: "world", limit: 100 });
+    expect(world.articles.every((a) => !a.language || a.language === "en")).toBe(true);
+
+    expect(getLanguageArticles("ta", 3).length).toBeLessThanOrEqual(3);
+    expect(getLanguageArticles("ta", 3).every((a) => a.language === "ta")).toBe(true);
+  });
+});

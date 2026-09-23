@@ -17,7 +17,11 @@ NewsSplit crawls 47 public RSS/Atom feeds (BBC, The Guardian, Al Jazeera, The Ve
 - **Automatic freshness** — a background crawler re-fetches every feed on an interval (default 10 min); stale data also triggers an on-demand refresh when a visitor arrives.
 - **Health & transparency** — `/sources` shows every registered feed with its last state, latency, item count and error, plus `/api/status` for machines.
 - **Your own RSS** — NewsSplit re-emits its aggregated output as RSS 2.0 at `/api/feed` (alias `/feed`), per category if you like.
-- **Dark / light theme**, keyboard-friendly, responsive from 320 px to ultrawide; no tracking, no cookies, no third-party JS.
+- **Multilingual UI (i18n)** — English, **বাংলা**, **हिन्दी** and **தமிழ்** with a navbar language switcher, a cookie-backed locale (`ns-locale`) and a native-language coverage rail fed by Bengali, Hindi and Tamil RSS sources. Headlines are always shown as the publisher filed them — never machine-translated.
+- **Accounts (optional)** — Auth.js (NextAuth v5) with **Google sign-in** and **email/password**, bcrypt-hashed passwords, a `/dashboard` profile page where signed-in readers save their preferred language and local-news region, and middleware that keeps `/dashboard` private.
+- **Legal pages** — typography-focused `/privacy-policy`, `/terms-of-service` and `/security-policy`, linked from a responsive footer with social icons.
+- **Responsive footer** — categories, product links, API endpoints, legal links, social icons and dynamic copyright, all translated.
+- **Dark / light theme**, keyboard-friendly, responsive from 320 px to ultrawide; no third-party JS, no analytics.
 - **Offline resilience** — when outbound network is unavailable the app serves a bundled real-headline snapshot (`live` → `stale` → `snapshot` modes) and always banners which mode you are in, so nobody mistakes cached data for live coverage.
 
 ## Quick start
@@ -94,6 +98,21 @@ The store runs in three visible modes:
 
 Add/remove feeds in one place: `src/lib/sources.ts`.
 
+### Indian-language feeds
+
+The registry also carries native-language sources so the multilingual UI has something to show:
+
+| Source | Language | Endpoint |
+| --- | --- | --- |
+| Google News বাংলা | Bengali (bn) | `https://news.google.com/rss?hl=bn&gl=IN&ceid=IN:bn` |
+| Google News हिन्दी | Hindi (hi) | `https://news.google.com/rss?hl=hi&gl=IN&ceid=IN:hi` |
+| Google News தமிழ் | Tamil (ta) | `https://news.google.com/rss?hl=ta&gl=IN&ceid=IN:ta` |
+| NDTV India | Hindi (hi) | `https://feeds.feedburner.com/ndtvkhabar-latest` (direct RSS) |
+| আনন্দবাজার পত্রিকা | Bengali (bn) | `site:anandabazar.com when:2d` via Google News (their own `/rss` path returns 404) |
+| தினத்தந்தி | Tamil (ta) | `site:dailythanthi.com when:2d` via Google News (their own `/rss` path returns 404) |
+
+Every entry sets a `language` field (`"bn" | "hi" | "ta"`), which the normaliser copies onto each article; `/api/news?lang=bn` and the front page's “In Indian languages” rail filter on it. English rails never mix in native-language items. To add another language, add feeds with a new `language` code and a dictionary in `src/lib/i18n/dictionaries.ts`.
+
 ## Configuration
 
 Every value is optional — see `.env.example` for the full annotated list.
@@ -115,12 +134,25 @@ Every value is optional — see `.env.example` for the full annotated list.
 
 | Endpoint | Description |
 | --- | --- |
-| `GET /api/news?category=&q=&source=&hours=&sort=&limit=&offset=&region=&clustered=` | The one feed endpoint: ranked articles or clusters, with facets |
+| `GET /api/news?category=&q=&source=&hours=&sort=&limit=&offset=&region=&clustered=&lang=` | The one feed endpoint: ranked articles or clusters, with facets (`lang=bn|hi|ta` for native-language feeds) |
 | `GET /api/story/[id]` | A single cluster: lead story, every outlet’s version, related stories |
 | `GET /api/categories` | Category metadata + counts |
 | `GET /api/status` | Store mode, counts, per-feed health, last error |
 | `POST /api/refresh` | Force an immediate crawl (requires `REFRESH_TOKEN` via `?token=` or `Authorization: Bearer`) |
 | `GET /api/feed?category=&limit=` (alias `/feed`) | NewsSplit’s own RSS 2.0 output |
+| `POST /api/locale` | Sets the `ns-locale` UI-language cookie |
+| `POST /api/auth/signup` · `GET/PUT /api/prefs` · `/api/auth/*` | Account creation, saved preferences, Auth.js handlers |
+
+### Accounts & languages
+
+| Variable | Default | What it does |
+| --- | --- | --- |
+| `AUTH_SECRET` | – | **Set this in production.** Signs session cookies (Auth.js). Missing ⇒ a development-only key is used and a warning is logged. |
+| `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` | – | Google OAuth credentials. Leave empty to ship only email/password. Authorised redirect URI: `https://<domain>/api/auth/callback/google`. |
+| `AUTH_URL` | request host | Override the callback base URL behind a proxy. |
+| `USERS_FILE` | `.cache/newssplit-users.json` | Where accounts are stored. Passwords are bcrypt hashes; swap `src/lib/users.ts` for a real database when you outgrow a JSON file. |
+
+Languages ship with the code — no environment variables required. Visitors switch language from the navbar (stored in the `ns-locale` cookie for a year); the switcher, dashboard dropdown and every server-rendered page/API read the same locale.
 
 ## Keeping a deployment fresh
 
@@ -135,8 +167,12 @@ src/
 ├── app/                  # App Router pages, layouts and API routes
 │   ├── page.tsx          # front page (hero, rails, clusters, latest)
 │   ├── category/[slug]/  # per-category feed pages
+│   ├── (auth)/login/     # sign-in page (Google + email/password)
+│   ├── (auth)/signup/    # registration
+│   ├── dashboard/        # profile: preferred language + local region
+│   ├── privacy-policy/ terms-of-service/ security-policy/
 │   ├── search/ sources/ about/ story/[id]/
-│   └── api/              # news, story, categories, status, refresh, feed
+│   └── api/              # news, story, categories, status, refresh, feed, locale, prefs, auth/[...nextauth]
 ├── components/           # StoryCard, rails, ticker, region picker, …
 ├── lib/                  # the engine
 │   ├── sources.ts        # feed registry (edit this to add feeds)
@@ -146,7 +182,12 @@ src/
 │   ├── rank.ts           # scoring & diversification
 │   ├── dedupe.ts         # URL dedupe + headline clustering
 │   ├── store.ts          # singleton store, refresh loop, disk cache
+│   ├── users.ts          # JSON-backed accounts (bcrypt hashes, prefs)
+│   ├── i18n/             # locales, dictionaries, cookie switching
 │   └── snapshot.ts       # bundled offline capture
+├── auth.ts               # Auth.js (Node runtime): providers + callbacks
+├── auth.config.ts        # edge-safe Auth.js config
+├── middleware.ts         # keeps /dashboard behind a session cookie
 ├── data/snapshot.json    # real headlines for offline/demo mode
 └── instrumentation.ts    # starts the crawl loop (Node runtime)
 scripts/refresh.mjs       # cron helper for deployed instances
@@ -159,7 +200,7 @@ Next.js 15 (App Router, Turbopack) · TypeScript · Tailwind CSS v4 (CSS-first t
 
 ## Tests & CI
 
-`npm run verify` runs typecheck, the 79-test Vitest suite and a production build. GitHub Actions additionally boots the built app and smoke-tests `/`, `/api/status`, `/api/news` and `/api/feed` (in `NEWS_SPLIT_OFFLINE=always` mode so CI never depends on the public feeds being up).
+`npm run verify` runs typecheck, the Vitest suite (feed parsing, normalising, clustering, ranking, store, the fetcher's body cap, the i18n dictionaries and the account store — 99 tests) and a production build. GitHub Actions additionally boots the built app and smoke-tests `/`, `/api/status`, `/api/news`, `/api/feed`, the three legal pages, `/login` and `/signup`, asserts `/dashboard` redirects signed-out visitors to `/login`, and checks that the `ns-locale=bn` cookie renders the Bengali UI (all in `NEWS_SPLIT_OFFLINE=always` mode so CI never depends on the public feeds being up).
 
 ## Licence
 

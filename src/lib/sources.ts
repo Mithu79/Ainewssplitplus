@@ -109,7 +109,24 @@ export const FEED_SOURCES: FeedSource[] = [
     resolveUrl: ({ locale }) =>
       `https://news.google.com/rss/headlines/section/topic/LOCAL?hl=${locale.hl}&gl=${locale.gl}&ceid=${locale.ceid}`,
   },
+
+  // ── Indian languages (Bengali · Hindi · Tamil) ───────────────────────────
+  // Every entry declares `language`; the normaliser copies it onto each article
+  // so `/api/news?lang=bn` and the front page's native-language rail can filter.
+  // Headlines are always shown as filed — never machine-translated.
+  { id: "gn-bn", name: "Google News বাংলা", category: "world", kind: "google-news", url: "https://news.google.com/rss?hl=bn&gl=IN&ceid=IN:bn", site: "https://news.google.com/?hl=bn&gl=IN&ceid=IN:bn", weight: 3, language: "bn" },
+  { id: "gn-hi", name: "Google News हिन्दी", category: "world", kind: "google-news", url: "https://news.google.com/rss?hl=hi&gl=IN&ceid=IN:hi", site: "https://news.google.com/?hl=hi&gl=IN&ceid=IN:hi", weight: 3, language: "hi" },
+  { id: "gn-ta", name: "Google News தமிழ்", category: "world", kind: "google-news", url: "https://news.google.com/rss?hl=ta&gl=IN&ceid=IN:ta", site: "https://news.google.com/?hl=ta&gl=IN&ceid=IN:ta", weight: 3, language: "ta" },
+  { id: "ndtv-india", name: "NDTV India", category: "world", url: "https://feeds.feedburner.com/ndtvkhabar-latest", site: "https://ndtv.in", weight: 3, language: "hi" },
+  // Anandabazar and Daily Thanthi's own /rss paths return 404, so route them through Google News site: queries.
+  { id: "anandabazar", name: "আনন্দবাজার পত্রিকা", category: "world", kind: "google-news", url: "https://news.google.com/rss/search?q=site:anandabazar.com+when:2d&hl=bn&gl=IN&ceid=IN:bn", site: "https://www.anandabazar.com", weight: 3, language: "bn" },
+  { id: "dailythanthi", name: "தினத்தந்தி", category: "world", kind: "google-news", url: "https://news.google.com/rss/search?q=site:dailythanthi.com+when:2d&hl=ta&gl=IN&ceid=IN:ta", site: "https://www.dailythanthi.com", weight: 3, language: "ta" },
 ];
+
+/** Feeds that publish in a non-English language. */
+export function languageSources(): FeedSource[] {
+  return FEED_SOURCES.filter((s) => s.language && s.language !== "en");
+}
 
 /** Extra local feeds supplied through the LOCAL_FEEDS env var. */
 export function customLocalSources(): FeedSource[] {

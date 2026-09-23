@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BreakingTicker } from "@/components/BreakingTicker";
 import { CategoryRail } from "@/components/CategoryRail";
 import { Icon } from "@/components/Icons";
+import { LanguageRail } from "@/components/LanguageRail";
 import { LatestPanel } from "@/components/LatestPanel";
 import { MostCovered } from "@/components/MostCovered";
 import { PipelineExplainer } from "@/components/PipelineExplainer";
@@ -10,10 +11,12 @@ import { StatsStrip } from "@/components/StatsStrip";
 import { EmptyState, StoryCard, StoryGrid } from "@/components/StoryCard";
 import { CATEGORIES } from "@/lib/categories";
 import { config } from "@/lib/config";
+import { getI18n } from "@/lib/i18n/server";
 import {
   clusterSourceCounts,
   getBreaking,
   getDeepReads,
+  getLanguageArticles,
   getLatest,
   getStatus,
   getTopClusters,
@@ -30,6 +33,12 @@ export default async function HomePage() {
   const breaking = getBreaking(12);
   const clusters = getTopClusters(5);
   const deepReads = getDeepReads(3);
+  const { locale, dict } = await getI18n();
+  const languageArticles = {
+    bn: getLanguageArticles("bn", 6),
+    hi: getLanguageArticles("hi", 6),
+    ta: getLanguageArticles("ta", 6),
+  };
 
   const rails = await Promise.all(
     CATEGORIES.map(async (category) => ({
@@ -117,6 +126,11 @@ export default async function HomePage() {
             <StoryGrid articles={moreTop} clusterCounts={counts} columns={3} />
           </section>
         )}
+
+        {/* ── Indian-language rail ───────────────────────────────────── */}
+        <div className="mt-12">
+          <LanguageRail articlesByLang={languageArticles} locale={locale} dict={dict} />
+        </div>
 
         {/* ── category rails ─────────────────────────────────────────── */}
         <div className="mt-12 flex flex-col gap-10">

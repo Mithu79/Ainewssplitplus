@@ -4,7 +4,9 @@ import { config } from "@/lib/config";
 import { errorResponse, intParam, jsonResponse, stringParam } from "@/lib/http";
 import { queryNews } from "@/lib/store";
 import { isCategoryId } from "@/lib/categories";
-import type { NewsQuery } from "@/lib/types";
+import type { ArticleLanguage, NewsQuery } from "@/lib/types";
+
+const LANGS: ArticleLanguage[] = ["en", "bn", "hi", "ta"];
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +21,7 @@ export const dynamic = "force-dynamic";
  * limit / offset     pagination (limit max 100)
  * region=<place>     used by the local category
  * clustered=1        also return grouped multi-outlet coverage
+ * lang=en|bn|hi|ta   only stories filed in that language
  */
 export async function GET(request: NextRequest) {
   const sp = request.nextUrl.searchParams;
@@ -41,6 +44,14 @@ export async function GET(request: NextRequest) {
     region: stringParam(sp.get("region"), 80),
     clustered: sp.get("clustered") === "1" || sp.get("clustered") === "true",
   };
+
+  const langRaw = stringParam(sp.get("lang"), 8)?.toLowerCase();
+  if (langRaw) {
+    if (!LANGS.includes(langRaw as ArticleLanguage)) {
+      return errorResponse(`Unknown lang "${langRaw}".`, 400, { valid: LANGS });
+    }
+    query.lang = langRaw as ArticleLanguage;
+  }
 
   if (query.category === "local" && !query.region) query.region = config.defaultRegion;
 

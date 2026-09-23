@@ -793,6 +793,90 @@
       "sourceId": "aljazeera",
       "categories": ["entertainment"],
       "isVideo": true
+    },
+    {
+      "title": "দুর্গাপুজোর আগে কলকাতায় মেট্রোর সময়সূচি বদল, রাত ১২টা পর্যন্ত চলবে ট্রেন - আনন্দবাজার পত্রিকা",
+      "link": "https://www.anandabazar.com/west-bengal/kolkata/metro-timing-durga-puja-2026",
+      "publishedAt": "2026-09-20T09:10:00Z",
+      "sourceId": "anandabazar",
+      "categories": ["world"]
+    },
+    {
+      "title": "বাংলাদেশ সীমান্তে বিএসএফ-এর নতুন নজরদারি ব্যবস্থা চালু - আনন্দবাজার পত্রিকা",
+      "link": "https://www.anandabazar.com/west-bengal/bsf-border-surveillance-2026",
+      "publishedAt": "2026-09-20T07:30:00Z",
+      "sourceId": "anandabazar",
+      "categories": ["world"]
+    },
+    {
+      "title": "রাজ্যে বৃষ্টির পূর্বাভাস, উপকূলে সতর্কতা জারি আবহাওয়া দফতরের - Eisamay",
+      "link": "https://eisamay.com/west-bengal-news/kolkata-news/weather-update-rain-forecast-2026",
+      "publishedAt": "2026-09-20T06:45:00Z",
+      "sourceId": "gn-bn",
+      "categories": ["world"]
+    },
+    {
+      "title": "ইডেনে ভারত-অস্ট্রেলিয়া ম্যাচের টিকিট বিক্রি শুরু বুধবার - Sangbad Pratidin",
+      "link": "https://www.sangbadpratidin.in/sports/eden-gardens-ind-aus-tickets-2026",
+      "publishedAt": "2026-09-20T05:20:00Z",
+      "sourceId": "gn-bn",
+      "categories": ["world"]
+    },
+    {
+      "title": "संसद का शीतकालीन सत्र 24 नवंबर से, सरकार ला सकती है कई अहम विधेयक",
+      "link": "https://ndtv.in/india/parliament-winter-session-2026",
+      "publishedAt": "2026-09-20T08:50:00Z",
+      "sourceId": "ndtv-india",
+      "categories": ["world"]
+    },
+    {
+      "title": "दिल्ली-NCR में हवा फिर 'बहुत खराब' श्रेणी में, GRAP का दूसरा चरण लागू",
+      "link": "https://ndtv.in/delhi-ncr/delhi-air-quality-grap-stage-2-2026",
+      "publishedAt": "2026-09-20T06:10:00Z",
+      "sourceId": "ndtv-india",
+      "categories": ["world"]
+    },
+    {
+      "title": "RBI ने रेपो रेट 6.25% पर बरकरार रखा, महंगाई अनुमान घटाया - Dainik Bhaskar",
+      "link": "https://www.bhaskar.com/business/news/rbi-monetary-policy-repo-rate-2026",
+      "publishedAt": "2026-09-20T05:05:00Z",
+      "sourceId": "gn-hi",
+      "categories": ["world"]
+    },
+    {
+      "title": "ISRO का गगनयान G1 मिशन अगले महीने, पहली मानवरहित उड़ान की तैयारी पूरी - Amar Ujala",
+      "link": "https://www.amarujala.com/india-news/isro-gaganyaan-g1-mission-2026",
+      "publishedAt": "2026-09-20T04:40:00Z",
+      "sourceId": "gn-hi",
+      "categories": ["world"]
+    },
+    {
+      "title": "சென்னையில் கனமழை: பள்ளி, கல்லூரிகளுக்கு நாளை விடுமுறை - தினத்தந்தி",
+      "link": "https://www.dailythanthi.com/News/State/chennai-heavy-rain-holiday-2026",
+      "publishedAt": "2026-09-20T09:35:00Z",
+      "sourceId": "dailythanthi",
+      "categories": ["world"]
+    },
+    {
+      "title": "கூடங்குளம் 3வது அணு உலை அடுத்த ஆண்டு செயல்பாட்டுக்கு வரும்: மத்திய அரசு - தினத்தந்தி",
+      "link": "https://www.dailythanthi.com/News/India/kudankulam-unit-3-2026",
+      "publishedAt": "2026-09-20T07:05:00Z",
+      "sourceId": "dailythanthi",
+      "categories": ["world"]
+    },
+    {
+      "title": "திருச்சி விமான நிலையத்தில் புதிய முனையம் திறப்பு; சர்வதேச விமானங்கள் அதிகரிப்பு - Dinamalar",
+      "link": "https://www.dinamalar.com/news/trichy-airport-new-terminal-2026",
+      "publishedAt": "2026-09-20T05:50:00Z",
+      "sourceId": "gn-ta",
+      "categories": ["world"]
+    },
+    {
+      "title": "தமிழக சட்டப்பேரவை தேர்தல்: வாக்காளர் பட்டியல் சிறப்பு திருத்தம் தொடக்கம் - Maalaimalar",
+      "link": "https://www.maalaimalar.com/news/state/tn-electoral-roll-revision-2026",
+      "publishedAt": "2026-09-20T04:15:00Z",
+      "sourceId": "gn-ta",
+      "categories": ["world"]
     }
   ]
 }
