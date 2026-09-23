@@ -39,7 +39,7 @@ export const config = {
   offlineMode,
   refreshToken: str(process.env.REFRESH_TOKEN, ""),
 
-  defaultRegion: str(process.env.LOCAL_DEFAULT_REGION, "United States"),
+  defaultRegion: str(process.env.LOCAL_DEFAULT_REGION, "West Bengal"),
   extraLocalFeeds: str(process.env.LOCAL_FEEDS, "")
     .split(",")
     .map((u) => u.trim())
@@ -50,6 +50,18 @@ export const config = {
     gl: str(process.env.GOOGLE_NEWS_GL, "US"),
     ceid: str(process.env.GOOGLE_NEWS_CEID, "US:en"),
   } satisfies GoogleNewsLocale,
+
+  /**
+   * Google Cloud Translation (one-click "Read in" translation).
+   * An empty key disables POST /api/translate with a 503 so the UI can show a
+   * friendly "not configured" state instead of a hard failure.
+   */
+  googleTranslateApiKey: str(process.env.GOOGLE_TRANSLATE_API_KEY, ""),
+  /** Translation model: `nmt` (neural) or `base` (phrase-based). */
+  googleTranslateModel: str(process.env.GOOGLE_TRANSLATE_MODEL, "nmt"),
+  /** Per-request cap enforced by /api/translate before anything leaves the box. */
+  translateMaxTexts: Math.max(1, num(process.env.TRANSLATE_MAX_TEXTS, 8)),
+  translateMaxTextLength: Math.max(200, num(process.env.TRANSLATE_MAX_TEXT_LENGTH, 2000)),
 
   /** Stories younger than this are eligible for the breaking ticker. */
   breakingWindowMs: 90 * 60_000,

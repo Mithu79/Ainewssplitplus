@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { CATEGORY_IDS } from "../categories";
 import { getTopStories, getStatus, queryNews, searchArticles } from "../store";
 import { loadSnapshotArticles } from "../snapshot";
+import { MIX_LANGUAGES } from "../types";
 
 describe("snapshot", () => {
   it("builds ranked articles for every category", () => {
@@ -13,11 +14,18 @@ describe("snapshot", () => {
     expect(new Set(articles.map((article) => article.id)).size).toBe(articles.length);
   });
 
-  it("splits Google News publishers out of the headline", () => {
+  it("splits Google News publisher suffixes out of Bengali local headlines", () => {
     const articles = loadSnapshotArticles();
     const local = articles.filter((article) => article.categories.includes("local"));
-    expect(local.some((article) => article.sourceName === "Local News Matters")).toBe(true);
-    expect(local.every((article) => !article.title.endsWith(" - Local News Matters"))).toBe(true);
+    // The Local desk is fed exclusively by popular Bengali publishers.
+    expect(local.length).toBeGreaterThan(0);
+    expect(local.every((article) => article.language === "bn")).toBe(true);
+    expect(local.some((article) => article.sourceName === "আনন্দবাজার পত্রিকা")).toBe(true);
+    expect(local.some((article) => article.sourceName === "বর্তমান")).toBe(true);
+    // "… - প্রকাশক" suffixes from Google News are split off the headline.
+    expect(local.every((article) => !article.title.endsWith(" - আনন্দবাজার পত্রিকা"))).toBe(true);
+    expect(local.every((article) => !article.title.endsWith(" - বর্তমান"))).toBe(true);
+    expect(local.every((article) => !article.title.endsWith(" - কালের কণ্ঠ"))).toBe(true);
   });
 });
 
@@ -73,10 +81,21 @@ describe("store", () => {
     expect(result.clusters!.some((cluster) => cluster.items.length >= 2)).toBe(true);
   });
 
-  it("provides top stories with publisher diversity", () => {
+  it("provides top stories mixing Bengali, English and Hindi with publisher diversity", () => {
     const top = getTopStories(6);
     expect(top).toHaveLength(6);
-    expect(top[0].score).toBeGreaterThanOrEqual(top[top.length - 1].score);
+
+    // The front page mixes all three languages by design (en → bn → hi lanes).
+    const langs = new Set(top.map((article) => article.language ?? "en"));
+    expect(langs.has("en")).toBe(true);
+    expect(langs.has("bn")).toBe(true);
+    expect(langs.has("hi")).toBe(true);
+
+    // Within each language lane the ranking order is preserved.
+    for (const lang of MIX_LANGUAGES) {
+      const lane = top.filter((article) => (article.language ?? "en") === lang).map((article) => article.score);
+      expect(lane).toEqual([...lane].sort((a, b) => b - a));
+    }
   });
 
   it("reports per-category counts in the status payload", () => {
@@ -88,25 +107,37 @@ describe("store", () => {
 });
 
 describe("languages", () => {
-  it("keeps the English rails English and exposes native-language feeds via lang=", async () => {
+  it("mixes Bengali, English and Hindi on the front page while lang= still filters one desk", async () => {
     const { getLanguageArticles, languageCounts } = await import("../store");
     const counts = languageCounts();
     expect(counts.bn).toBeGreaterThan(0);
     expect(counts.hi).toBeGreaterThan(0);
     expect(counts.ta).toBeGreaterThan(0);
 
+    // "Top stories" mixes bn · en · hi; Tamil stays opt-in via lang=ta.
     const top = getTopStories(50);
-    expect(top.every((a) => !a.language || a.language === "en")).toBe(true);
+    const topLangs = new Set(top.map((article) => article.language ?? "en"));
+    for (const lang of MIX_LANGUAGES) expect(topLangs.has(lang)).toBe(true);
+    expect(top.every((article) => (article.language ?? "en") !== "ta")).toBe(true);
 
     const bn = await queryNews({ lang: "bn", limit: 20 });
     expect(bn.total).toBe(counts.bn);
-    expect(bn.articles.every((a) => a.language === "bn")).toBe(true);
-    expect(bn.articles.some((a) => a.sourceName === "আনন্দবাজার পত্রিকা")).toBe(true);
+    expect(bn.articles.every((article) => article.language === "bn")).toBe(true);
+    expect(bn.articles.some((article) => article.sourceName === "আনন্দবাজার পত্রিকা")).toBe(true);
 
+    // Category listings mix the same three languages.
     const world = await queryNews({ category: "world", limit: 100 });
-    expect(world.articles.every((a) => !a.language || a.language === "en")).toBe(true);
+    for (const lang of MIX_LANGUAGES) {
+      expect(world.articles.some((article) => (article.language ?? "en") === lang)).toBe(true);
+    }
 
     expect(getLanguageArticles("ta", 3).length).toBeLessThanOrEqual(3);
-    expect(getLanguageArticles("ta", 3).every((a) => a.language === "ta")).toBe(true);
+    expect(getLanguageArticles("ta", 3).every((article) => article.language === "ta")).toBe(true);
+  });
+
+  it("keeps the Local desk exclusively Bengali", async () => {
+    const local = await queryNews({ category: "local", limit: 50 });
+    expect(local.total).toBeGreaterThan(0);
+    expect(local.articles.every((article) => article.language === "bn")).toBe(true);
   });
 });

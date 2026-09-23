@@ -9,6 +9,7 @@ import { PipelineExplainer } from "@/components/PipelineExplainer";
 import { SectionHeading } from "@/components/SectionHeading";
 import { StatsStrip } from "@/components/StatsStrip";
 import { EmptyState, StoryCard, StoryGrid } from "@/components/StoryCard";
+import { TranslateBar } from "@/components/translate/TranslateBar";
 import { CATEGORIES } from "@/lib/categories";
 import { config } from "@/lib/config";
 import { getI18n } from "@/lib/i18n/server";
@@ -88,6 +89,8 @@ export default async function HomePage() {
                 World desk →
               </Link>
             </div>
+
+            <TranslateBar />
 
             {lead && <StoryCard article={lead} variant="hero" priority sourceCount={counts.get(lead.clusterId)} />}
 

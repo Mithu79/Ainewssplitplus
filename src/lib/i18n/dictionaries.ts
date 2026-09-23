@@ -39,7 +39,7 @@ const en = {
     languageRailKicker: "In Indian languages",
     languageRailTitle: "বাংলা · हिन्दी · தமிழ் coverage",
     languageRailDescription:
-      "Headlines from Bengali, Hindi and Tamil newsrooms, shown exactly as the publisher filed them — never machine-translated.",
+      "Headlines from Bengali, Hindi and Tamil newsrooms, shown exactly as the publisher filed them — pick a “Read in” language to machine-translate any headline on request.",
     seeAll: "See all",
   },
   auth: {
@@ -120,6 +120,12 @@ const en = {
     back: "Back",
     error: "Error",
   },
+  translate: {
+    label: "Read in",
+    original: "As filed",
+    note: "Machine translation — cards always link to the original article.",
+    error: "Translation unavailable right now.",
+  },
 } as const;
 
 /** Recursively widens the literal string types of the English dictionary. */
@@ -154,7 +160,7 @@ const bn: Dictionary = {
     languageRailKicker: "ভারতীয় ভাষায়",
     languageRailTitle: "বাংলা · हिन्दी · தமிழ் খবর",
     languageRailDescription:
-      "বাংলা, হিন্দি ও তামিল সংবাদমাধ্যমের শিরোনাম — প্রকাশক যেভাবে লিখেছেন ঠিক সেভাবেই, কোনও যন্ত্রানুবাদ ছাড়া।",
+      "বাংলা, হিন্দি ও তামিল সংবাদমাধ্যমের শিরোনাম — প্রকাশক যেভাবে লিখেছেন ঠিক সেভাবেই; চাইলে ‘পড়ুন’-এ ভাষা বেছে নিয়ে যেকোনো শিরোনাম অনুবাদ করাযায়।",
     seeAll: "সব দেখুন",
   },
   auth: {
@@ -230,6 +236,12 @@ const bn: Dictionary = {
     follow: "অনুসরণ করুন",
   },
   common: { outlets: "{count}টি সংবাদমাধ্যম", loading: "লোড হচ্ছে…", back: "ফিরে যান", error: "ত্রুটি" },
+  translate: {
+    label: "পড়ুন",
+    original: "মূল ভাষায়",
+    note: "যন্ত্রানুবাদ — কার্ড সবসময় মূল নিবন্ধে লিঙ্ক করে।",
+    error: "এই মুহূর্তে অনুবাদ সম্ভব নয়।",
+  },
 };
 
 const hi: Dictionary = {
@@ -260,7 +272,7 @@ const hi: Dictionary = {
     languageRailKicker: "भारतीय भाषाओं में",
     languageRailTitle: "বাংলা · हिन्दी · தமிழ் कवरेज",
     languageRailDescription:
-      "बांग्ला, हिन्दी और तमिल न्यूज़रूम की सुर्खियाँ — ठीक वैसी ही जैसी प्रकाशक ने लिखीं, कभी मशीन-अनुवादित नहीं।",
+      "बांग्ला, हिन्दी और तमिल न्यूज़रूम की सुर्खियाँ — ठीक वैसी ही जैसी प्रकाशक ने लिखीं; चाहें तो ‘पढ़ें’ में भाषा चुनकर किसी भी सुर्खी का अनुवाद कर सकते हैं।",
     seeAll: "सभी देखें",
   },
   auth: {
@@ -336,6 +348,12 @@ const hi: Dictionary = {
     follow: "फ़ॉलो करें",
   },
   common: { outlets: "{count} आउटलेट", loading: "लोड हो रहा है…", back: "वापस", error: "त्रुटि" },
+  translate: {
+    label: "पढ़ें",
+    original: "जैसे लिखा गया",
+    note: "मशीन-अनुवाद — कार्ड हमेशा मूल लेख से जुड़े रहते हैं।",
+    error: "अभी अनुवाद उपलब्ध नहीं है।",
+  },
 };
 
 const ta: Dictionary = {
@@ -366,7 +384,7 @@ const ta: Dictionary = {
     languageRailKicker: "இந்திய மொழிகளில்",
     languageRailTitle: "বাংলা · हिन्दी · தமிழ் செய்திகள்",
     languageRailDescription:
-      "வங்காளம், இந்தி மற்றும் தமிழ் செய்தி அறைகளின் தலைப்புச் செய்திகள் — வெளியீட்டாளர் எழுதியபடியே, இயந்திர மொழிபெயர்ப்பு இல்லாமல்.",
+      "வங்காளம், இந்தி மற்றும் தமிழ் செய்தி அறைகளின் தலைப்புச் செய்திகள் — வெளியீட்டாளர் எழுதியபடியே; விரும்பினால் ‘படிக்க’ மொழியைத் தேர்ந்தெடுத்து எந்தத் தலைப்பையும் மொழிபெயர்க்கலாம்.",
     seeAll: "அனைத்தையும் பார்",
   },
   auth: {
@@ -442,6 +460,12 @@ const ta: Dictionary = {
     follow: "பின்தொடர்",
   },
   common: { outlets: "{count} ஊடகங்கள்", loading: "ஏற்றுகிறது…", back: "பின்", error: "பிழை" },
+  translate: {
+    label: "படிக்க",
+    original: "பதிவான வண்ணம்",
+    note: "இயந்திர மொழிபெயர்ப்பு — அட்டைகள் எப்போதும் அசல் கட்டுரையை இணைக்கும்.",
+    error: "இப்போது மொழிபெயர்ப்பு கிடைக்கவில்லை.",
+  },
 };
 
 export const DICTIONARIES: Record<Locale, Dictionary> = { en, bn, hi, ta };

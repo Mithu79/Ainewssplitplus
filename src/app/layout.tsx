@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { ModeBanner } from "@/components/ModeBanner";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TranslateProvider } from "@/components/translate/TranslateProvider";
 import { config } from "@/lib/config";
 import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
 import { LOCALE_META } from "@/lib/i18n/locales";
@@ -85,6 +86,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body className="flex min-h-screen flex-col bg-bg text-ink">
         <LocaleProvider locale={locale} dict={dict}>
+          <TranslateProvider>
           <a
             href="#main"
             className="sr-only z-[80] rounded-lg bg-ink px-4 py-2 text-sm font-bold text-bg focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
@@ -100,6 +102,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </main>
 
           <SiteFooter sourceCount={allSources().length} articleCount={status.articleCount} dict={dict} />
+          </TranslateProvider>
         </LocaleProvider>
       </body>
     </html>

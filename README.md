@@ -2,7 +2,7 @@
 
 **Automated news aggregation — every side of the story in one place.**
 
-NewsSplit crawls 47 public RSS/Atom feeds (BBC, The Guardian, Al Jazeera, The Verge, Ars Technica, ESPN, STAT, Google News and more), normalises and ranks the items, clusters cross-publisher coverage of the same event, and serves the result as a fast, modern, responsive Next.js app — with zero API keys and no manual editorial step.
+NewsSplit crawls 78 public RSS/Atom feed endpoints (BBC, The Guardian, Al Jazeera, The Verge, Ars Technica, ESPN, STAT, Google News in English · বাংলা · हिन्दी · தমি঴், the biggest Bengali publishers and more), normalises and ranks the items, clusters cross-publisher coverage of the same event, and serves the result as a fast, modern, responsive Next.js app — with zero required API keys and no manual editorial step.
 
 ![CI](https://github.com/Mithu79/Ainewssplitplus/actions/workflows/ci.yml/badge.svg)
 
@@ -10,14 +10,15 @@ NewsSplit crawls 47 public RSS/Atom feeds (BBC, The Guardian, Al Jazeera, The Ve
 
 ## What you get
 
-- **Front page** — breaking ticker, a lead-story hero, eight horizontally scrollable category rails, a “Most covered right now” cluster section, a live “Latest updates” panel and a stats strip.
-- **Eight categories** — World, Tech, Business, Sports, Science, Health, Entertainment and **Local** (region-switchable via Google News, with a client-side region picker).
+- **Front page** — breaking ticker, a lead-story hero, eight horizontally scrollable category rails, a “Most covered right now” cluster section, a live “Latest updates” panel and a stats strip. “Top stories” deliberately **mixes Bengali, English and Hindi** coverage (interleaved en → bn → hi) so the home page reads multilingual.
+- **Eight categories** — World, Tech, Business, Sports, Science, Health, Entertainment and **Local** (popular Bengali publishers — আনন্দবাজার পত্রিকা, প্রথম আলো, এই সময়, বর্তমান and friends). Every non-local category mixes en + bn + hi sources.
 - **Story clustering** — headlines from different publishers about the same event are merged into one story with an “N outlets” pill and a dedicated `/story/[id]` page listing every angle side by side.
 - **Search** — ranked full-text search over titles, summaries, tags and publishers.
 - **Automatic freshness** — a background crawler re-fetches every feed on an interval (default 10 min); stale data also triggers an on-demand refresh when a visitor arrives.
 - **Health & transparency** — `/sources` shows every registered feed with its last state, latency, item count and error, plus `/api/status` for machines.
 - **Your own RSS** — NewsSplit re-emits its aggregated output as RSS 2.0 at `/api/feed` (alias `/feed`), per category if you like.
-- **Multilingual UI (i18n)** — English, **বাংলা**, **हिन्दी** and **தமிழ்** with a navbar language switcher, a cookie-backed locale (`ns-locale`) and a native-language coverage rail fed by Bengali, Hindi and Tamil RSS sources. Headlines are always shown as the publisher filed them — never machine-translated.
+- **Multilingual UI (i18n)** — English, **বাংলা**, **हिन्दी** and **தமிழ்** with a navbar language switcher, a cookie-backed locale (`ns-locale`) and a native-language coverage rail fed by Bengali, Hindi and Tamil RSS sources. Headlines render exactly as the publisher filed them by default.
+- **One-click translation** — a “Read in” control (বাংলा · हिन्दी · English) that machine-translates every headline and standfirst in place via **Google Cloud Translation**, server-keyed and cached. Step-by-step: [`docs/translation.md`](docs/translation.md).
 - **Accounts (optional)** — Auth.js (NextAuth v5) with **Google sign-in** and **email/password**, bcrypt-hashed passwords, a `/dashboard` profile page where signed-in readers save their preferred language and local-news region, and middleware that keeps `/dashboard` private.
 - **Legal pages** — typography-focused `/privacy-policy`, `/terms-of-service` and `/security-policy`, linked from a responsive footer with social icons.
 - **Responsive footer** — categories, product links, API endpoints, legal links, social icons and dynamic copyright, all translated.
@@ -85,33 +86,46 @@ The store runs in three visible modes:
 
 ## Categories
 
+Every non-local category carries its English mastheads **plus Bengali and Hindi
+Google News topics**, so category listings mix all three languages the same way
+the front page does.
+
 | Category | Feeds |
 | --- | --- |
-| World | BBC News, The Guardian, Al Jazeera, The New York Times, NPR, DW, France 24 + Google News |
-| Tech | The Verge, Ars Technica, TechCrunch, WIRED, Engadget, MIT Technology Review, The Register, Hacker News + Google News |
-| Business | BBC Business, The Guardian, The New York Times, CNBC, MarketWatch + Google News |
-| Sports | BBC Sport, ESPN, CBS Sports, Sky Sports, The Guardian, The New York Times + Google News |
-| Science | BBC Science, Nature, New Scientist, ScienceDaily, Phys.org, NASA + Google News |
-| Health | STAT News, Medical News Today, WHO, The Guardian + Google News |
-| Entertainment | BBC Entertainment, Variety, The Hollywood Reporter, The Guardian + Google News |
-| Local | Google News local headlines — region chosen by `LOCAL_DEFAULT_REGION` or the on-page region picker (e.g. “Austin, Texas”, “New Delhi”) — plus any extra feeds in `LOCAL_FEEDS` |
+| World | BBC News, The Guardian, Al Jazeera, The New York Times, NPR, DW, France 24 + Google News, Google News বাংলা/हिन्दी/தমি঴், NDTV India, आज तक, दैनिक जागरण, தினத்தந்தி |
+| Tech | The Verge, Ars Technica, TechCrunch, WIRED, Engadget, MIT Technology Review, The Register, Hacker News + Google News (en · bn · hi) |
+| Business | BBC Business, The Guardian, The New York Times, CNBC, MarketWatch + Google News (en · bn · hi) |
+| Sports | BBC Sport, ESPN, CBS Sports, Sky Sports, The Guardian, The New York Times + Google News (en · bn · hi) |
+| Science | BBC Science, Nature, New Scientist, ScienceDaily, Phys.org, NASA + Google News (en · bn · hi) |
+| Health | STAT News, Medical News Today, WHO, The Guardian + Google News (en · bn · hi) |
+| Entertainment | BBC Entertainment, Variety, The Hollywood Reporter, The Guardian + Google News (en · bn · hi) |
+| Local | **Popular Bengali publishers only** — আনন্দবাজার পত্রিকা, প্রথম আলো, এই সময়, সংবাদ প্রতিদিন, বর্তমান, আজকাল, এবেলা, দৈনিক যুগান্তর, সমকাল, কালের কণ্ঠ, ABP আনন্দ, জি২৪ ঘণ্টা — each via a Google News `site:` query (their own `/rss` paths 404), plus any extra feeds in `LOCAL_FEEDS` |
 
 Add/remove feeds in one place: `src/lib/sources.ts`.
 
 ### Indian-language feeds
 
-The registry also carries native-language sources so the multilingual UI has something to show:
+Every non-English entry declares a `language` field (`"bn" | "hi" | "ta"`),
+which the normaliser copies onto each article. The query API filters on it
+(`/api/news?lang=bn`), the “In Indian languages” rail groups by it, and the
+front-page mix (`MIX_LANGUAGES` in `src/lib/types.ts`) uses it to interleave
+English, Bengali and Hindi on every ranked listing. Tamil stays opt-in
+(`lang=ta` + the rail) so the default mix keeps the requested three languages.
 
 | Source | Language | Endpoint |
 | --- | --- | --- |
-| Google News বাংলা | Bengali (bn) | `https://news.google.com/rss?hl=bn&gl=IN&ceid=IN:bn` |
-| Google News हिन्दी | Hindi (hi) | `https://news.google.com/rss?hl=hi&gl=IN&ceid=IN:hi` |
-| Google News தமிழ் | Tamil (ta) | `https://news.google.com/rss?hl=ta&gl=IN&ceid=IN:ta` |
+| Google News বাংলা / हिन्दी / தமிழ் | bn / hi / ta | `https://news.google.com/rss?hl=<lang>&gl=IN&ceid=IN:<lang>` |
+| Per-category Google News topics | bn / hi | `…/rss/headlines/section/topic/<TOPIC>?hl=bn\|hi&gl=IN&ceid=IN:bn\|hi` |
 | NDTV India | Hindi (hi) | `https://feeds.feedburner.com/ndtvkhabar-latest` (direct RSS) |
-| আনন্দবাজার পত্রিকা | Bengali (bn) | `site:anandabazar.com when:2d` via Google News (their own `/rss` path returns 404) |
+| आज तक, दैनिक जागरण | Hindi (hi) | `site:aajtak.in` / `site:jagran.com` via Google News |
 | தினத்தந்தி | Tamil (ta) | `site:dailythanthi.com when:2d` via Google News (their own `/rss` path returns 404) |
+| আনন্দবাজার পত্রিকা … জি২৪ ঘণ্টা | Bengali (bn) | `site:<publisher> when:2d` via Google News — the Local desk |
 
-Every entry sets a `language` field (`"bn" | "hi" | "ta"`), which the normaliser copies onto each article; `/api/news?lang=bn` and the front page's “In Indian languages” rail filter on it. English rails never mix in native-language items. To add another language, add feeds with a new `language` code and a dictionary in `src/lib/i18n/dictionaries.ts`.
+Headlines always render as filed by default; readers can machine-translate any
+headline on request via the “Read in” control (see
+[`docs/translation.md`](docs/translation.md)). To add another language, add
+feeds with a new `language` code and a dictionary in
+`src/lib/i18n/dictionaries.ts`.
 
 ## Configuration
 
@@ -125,9 +139,12 @@ Every value is optional — see `.env.example` for the full annotated list.
 | `CACHE_FILE` | `.cache/newssplit.json` | Disk persistence across restarts |
 | `NEWS_SPLIT_OFFLINE` | `auto` | `auto` (fall back to snapshot only if all feeds fail), `always` (never touch the network), `never` (no fallback) |
 | `REFRESH_TOKEN` | *(empty)* | Shared secret for `POST /api/refresh` — **empty means unauthenticated**; always set one on public deployments |
-| `LOCAL_DEFAULT_REGION` | `United States` | Default region for the Local category |
-| `GOOGLE_NEWS_HL` / `GOOGLE_NEWS_GL` / `GOOGLE_NEWS_CEID` | `en-US` / `US` / `US:en` | Google News locale |
-| `LOCAL_FEEDS` | *(empty)* | Comma-separated extra local RSS feeds |
+| `LOCAL_DEFAULT_REGION` | `West Bengal` | Default region label for the Local category |
+| `GOOGLE_NEWS_HL` / `GOOGLE_NEWS_GL` / `GOOGLE_NEWS_CEID` | `en-US` / `US` / `US:en` | Google News locale for locale-aware topics |
+| `LOCAL_FEEDS` | *(empty)* | Comma-separated extra local RSS feeds, merged into the Local desk |
+| `GOOGLE_TRANSLATE_API_KEY` | *(empty)* | Google Cloud Translation key for the “Read in” feature — **empty disables translation** (503 from `/api/translate`); see [`docs/translation.md`](docs/translation.md) |
+| `GOOGLE_TRANSLATE_MODEL` | `nmt` | Translation model (`nmt` or `base`) |
+| `TRANSLATE_MAX_TEXTS` / `TRANSLATE_MAX_TEXT_LENGTH` | `8` / `2000` | Per-request caps enforced by `POST /api/translate` |
 | `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_SITE_NAME` | `http://localhost:3000` / `NewsSplit` | Metadata, canonical URLs, RSS `<link>` |
 
 ## API

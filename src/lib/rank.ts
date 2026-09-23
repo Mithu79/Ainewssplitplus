@@ -1,5 +1,5 @@
 import { config } from "./config";
-import type { Article, CategoryId, FeedSource, SortOrder } from "./types";
+import { MIX_LANGUAGES, type Article, type ArticleLanguage, type CategoryId, type FeedSource, type SortOrder } from "./types";
 
 /**
  * Ranking: a transparent, tunable blend of source trust and recency, with
@@ -115,6 +115,42 @@ export function diversify(articles: Article[], cap: number = config.perSourceCap
   // Anything held back still gets appended in rank order.
   for (const article of deferred) out.push(article);
   return out;
+}
+
+/**
+ * Round-robin language interleave: alternates the en → bn → hi lanes (in the
+ * given order) so "Top stories" and every category listing mix Bengali, English
+ * and Hindi coverage instead of drowning non-English desks in English volume.
+ * Input order is preserved inside each lane (pass a ranked list), and languages
+ * outside the lane list are appended at the end untouched.
+ */
+export function interleaveByLanguage<T extends { language?: ArticleLanguage }>(
+  articles: T[],
+  languages: ArticleLanguage[] = MIX_LANGUAGES,
+): T[] {
+  const lanes = new Map<string, T[]>(languages.map((lang) => [lang, []]));
+  const rest: T[] = [];
+
+  for (const article of articles) {
+    const lane = lanes.get(article.language ?? "en");
+    if (lane) lane.push(article);
+    else rest.push(article);
+  }
+
+  const out: T[] = [];
+  let progress = true;
+  while (progress) {
+    progress = false;
+    for (const lang of languages) {
+      const lane = lanes.get(lang);
+      if (lane && lane.length > 0) {
+        out.push(lane.shift() as T);
+        progress = true;
+      }
+    }
+  }
+
+  return [...out, ...rest];
 }
 
 /** Picks the lead story of a cluster: direct publisher links and richer cards win. */

@@ -1,5 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { applyRanking, diversify, isBreaking, leadScore, recencyBoost, scoreArticle, sortArticles } from "../rank";
+import {
+  applyRanking,
+  diversify,
+  interleaveByLanguage,
+  isBreaking,
+  leadScore,
+  recencyBoost,
+  scoreArticle,
+  sortArticles,
+} from "../rank";
 import type { FeedSource } from "../types";
 import { FIXED_NOW, makeArticle } from "./helpers";
 
@@ -102,5 +111,38 @@ describe("sorting and diversity", () => {
     const direct = makeArticle({ title: "Same headline here", link: "https://a.example/1", domain: "a.example", score: 50 });
     const redirect = makeArticle({ title: "Same headline here", link: "https://news.google.com/x", domain: "news.google.com", score: 80 });
     expect(leadScore(direct)).toBeGreaterThan(leadScore(redirect));
+  });
+});
+
+describe("interleaveByLanguage", () => {
+  it("alternates en → bn → hi while keeping each lane in rank order", () => {
+    const items = [
+      makeArticle({ title: "English one", link: "https://a.example/e1", language: "en", score: 90 }),
+      makeArticle({ title: "English two", link: "https://a.example/e2", language: "en", score: 80 }),
+      makeArticle({ title: "English three", link: "https://a.example/e3", language: "en", score: 70 }),
+      makeArticle({ title: "Bengali one", link: "https://b.example/b1", language: "bn", score: 60 }),
+      makeArticle({ title: "Bengali two", link: "https://b.example/b2", language: "bn", score: 50 }),
+      makeArticle({ title: "Hindi one", link: "https://c.example/h1", language: "hi", score: 40 }),
+    ];
+    const out = interleaveByLanguage(items).map((a) => a.title);
+    expect(out).toEqual(["English one", "Bengali one", "Hindi one", "English two", "Bengali two", "English three"]);
+  });
+
+  it("treats missing language as English and keeps unlisted languages at the end", () => {
+    const items = [
+      makeArticle({ title: "Default one", link: "https://a.example/d1", score: 10 }),
+      makeArticle({ title: "Tamil one", link: "https://t.example/t1", language: "ta", score: 9 }),
+      makeArticle({ title: "Hindi one", link: "https://c.example/h1", language: "hi", score: 8 }),
+    ];
+    expect(interleaveByLanguage(items).map((a) => a.title)).toEqual(["Default one", "Hindi one", "Tamil one"]);
+  });
+
+  it("tolerates empty lanes and an empty input", () => {
+    const onlyEnglish = [
+      makeArticle({ title: "Default one", link: "https://a.example/d1", score: 2 }),
+      makeArticle({ title: "English two", link: "https://a.example/e2", language: "en", score: 1 }),
+    ];
+    expect(interleaveByLanguage(onlyEnglish).map((a) => a.title)).toEqual(["Default one", "English two"]);
+    expect(interleaveByLanguage([])).toEqual([]);
   });
 });

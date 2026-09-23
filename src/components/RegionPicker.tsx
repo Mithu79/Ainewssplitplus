@@ -7,24 +7,25 @@ import { Icon } from "./Icons";
 const STORAGE_KEY = "newssplit-region";
 
 export const REGION_PRESETS = [
-  "United States",
-  "New York",
-  "London",
+  "West Bengal",
+  "Kolkata",
+  "Howrah",
+  "Darjeeling",
+  "Bangladesh",
+  "Dhaka",
+  "Chattogram",
+  "Tripura",
+  "Assam",
   "New Delhi",
   "Mumbai",
   "Bengaluru",
-  "Sydney",
-  "Toronto",
-  "Berlin",
-  "Tokyo",
-  "Lagos",
-  "Singapore",
 ];
 
 /**
- * Local news is region aware. The choice is stored on the device, pushed into
- * the URL (so it is shareable) and used server-side to build the Google News
- * query plus any feeds configured through LOCAL_FEEDS.
+ * The Local desk reads popular Bengali publishers. The region choice is stored
+ * on the device, pushed into the URL (so it is shareable) and used server-side
+ * to label and cache on-demand coverage for a place plus any feeds configured
+ * through LOCAL_FEEDS.
  */
 export function RegionPicker({ region, defaultRegion }: { region: string; defaultRegion: string }) {
   const router = useRouter();
