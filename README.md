@@ -137,7 +137,7 @@ Every value is optional — see `.env.example` for the full annotated list.
 | `FETCH_TIMEOUT_SECONDS` / `FETCH_RETRIES` / `FETCH_CONCURRENCY` | `10` / `1` / `6` | Crawler HTTP behaviour |
 | `MAX_ITEMS_PER_SOURCE` / `MAX_CACHE_ITEMS` | `40` / `1500` | Store caps |
 | `CACHE_FILE` | `.cache/newssplit.json` | Disk persistence across restarts |
-| `NEWS_SPLIT_OFFLINE` | `auto` | `auto` (fall back to snapshot only if all feeds fail), `always` (never touch the network), `never` (no fallback) |
+| `NEWS_SPLIT_OFFLINE` | `auto` | `auto` (snapshot during startup / feed failure), `always` (offline demo), `never` (no bundled snapshot; previously crawled data may be stale). For Vercel, see the [live-news setup guide](docs/vercel-live-news.md). |
 | `REFRESH_TOKEN` | *(empty)* | Shared secret for `POST /api/refresh` — **empty means unauthenticated**; always set one on public deployments |
 | `LOCAL_DEFAULT_REGION` | `West Bengal` | Default region label for the Local category |
 | `GOOGLE_NEWS_HL` / `GOOGLE_NEWS_GL` / `GOOGLE_NEWS_CEID` | `en-US` / `US` / `US:en` | Google News locale for locale-aware topics |
@@ -175,7 +175,8 @@ Languages ship with the code — no environment variables required. Visitors swi
 
 - **Built-in loop** — the Node server refreshes itself every `REFRESH_INTERVAL_MINUTES` (started from `src/instrumentation.ts`, Node runtime only).
 - **External cron** — GitHub Actions workflow `.github/workflows/refresh.yml` POSTs to `/api/refresh` every 15 minutes. Set the repo variable `NEWS_SPLIT_URL` and the secret `REFRESH_TOKEN`. Self-hosted alternative: `npm run refresh` (exit `0` ok, `1` unreachable/auth error, `2` no feed responded).
-- **Serverless hosts** — the in-memory store works per-instance and rehydrates from the bundled snapshot when the filesystem is ephemeral; pair it with the external cron so cold starts get poked regularly.
+- **Vercel setup** — set `NEWS_SPLIT_OFFLINE=never` in **Settings → Environment Variables**, select Production (and Preview if needed), save, and **redeploy**. Use `CACHE_FILE=/tmp/newssplit.json` for the writable temporary filesystem. Check `/api/status` for `offlineMode: "never"`, a successful crawl, and per-feed health. See the [Vercel live-news guide](docs/vercel-live-news.md) for verification, crawl timeout tuning, and image troubleshooting.
+- **Serverless hosts** — timers and detached background crawls are not reliable schedulers. The current store and filesystem cache are per-instance: an external refresh does **not** populate every instance. Reliable cross-instance freshness needs shared persistent storage plus scheduled ingestion, or a long-lived Node host. `never` disables the bundled snapshot but does not solve those lifecycle limits or guarantee every publisher supplies images.
 
 ## Project structure
 
