@@ -68,6 +68,8 @@ export async function fetchText(
     if (attempt > 0) await sleep(300 * attempt);
     try {
       const response = await fetch(url, {
+        // Each crawl must read the publisher, not Next.js's persistent fetch cache.
+        cache: "no-store",
         redirect: "follow",
         signal: AbortSignal.timeout(timeoutMs),
         headers: {

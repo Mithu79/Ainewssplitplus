@@ -15,6 +15,10 @@ describe("fetchText", () => {
     const result = await fetchText(URL_STUB, { retries: 0 });
     expect(result.ok).toBe(true);
     expect(result.body).toBe(body);
+    expect(fetch).toHaveBeenCalledWith(
+      URL_STUB,
+      expect.objectContaining({ cache: "no-store", redirect: "follow" }),
+    );
   });
 
   it("fails fast when content-length exceeds the cap", async () => {
